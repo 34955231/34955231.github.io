@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PokeBot supplementary material, Kitchen</title>
+<link rel="stylesheet" href="../assets/pages.css">
+</head>
+<body>
+<main>
+<div class="topbar"><a class="btn" href="../index.html">PokeBot</a><span class="navs"><a class="btn" href="desk.html">Desk</a><a class="btn" href="small.html">Bedroom</a><a class="btn on" href="kitchen.html">Kitchen</a></span></div>
+<h1>Kitchen</h1>
+<p><span class="pb">PokeBot</span> rebuilt this scene from a phone scan. Each object in the tiles below has identified physical values.</p>
+<figure class="scan"><div class="lb"><span>Phone scan</span></div><video controls muted loop playsinline preload="metadata" data-auto poster="../media/scans/kitchen.jpg" ><source src="../media/scans/kitchen.mp4" type="video/mp4"></video></figure>
+<figure class="scan"><div class="lb"><span>Rebuilt scene</span></div><img src="../media/scenes/kitchen.jpg" alt="" loading="lazy" style="max-width:100%"></figure>
+<div class="tiles">
+<a class="tile" href="../objects/cabinet_door.html"><img alt="" loading="lazy" src="../media/tiles/cabinet_door.jpg"><b>Top left cabinet door</b></a>
+<a class="tile" href="../objects/microwave_door.html"><img alt="" loading="lazy" src="../media/tiles/microwave_door.jpg"><b>Kitchen microwave door</b></a>
+<a class="tile" href="../objects/kitchen_drawer_top.html"><img alt="" loading="lazy" src="../media/tiles/kitchen_drawer_top.jpg"><b>Kitchen drawer, top left</b></a>
+<a class="tile" href="../objects/kitchen_drawer_bottom.html"><img alt="" loading="lazy" src="../media/tiles/kitchen_drawer_bottom.jpg"><b>Kitchen drawer, left bottom</b></a>
+</div>
+</main>
+<script>
+(function () {
+  var vids = document.querySelectorAll("video[data-auto]");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else { v.pause(); }
+      });
+    }, { threshold: 0.25, rootMargin: "120px 0px" });
+    vids.forEach(function (v) { io.observe(v); });
+  }
+})();
+</script>
+</body>
+</html>

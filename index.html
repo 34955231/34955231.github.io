@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PokeBot supplementary material</title>
+<meta name="description" content="Supplementary videos for the PokeBot submission.">
+<style>
+:root {
+  --bg: #ffffff; --panel: #f6f6f6; --fg: #111111; --mut: #3b3b3b; --line: #cccccc; --accent: #1f5c99; --btn: #1a1a1a; --btnfg: #ffffff; --media: #111111;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-sans: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --f-head: var(--f-sans);
+  --f-mono: ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161616; --panel: #1f1f1f; --fg: #e8e8e8; --mut: #ababab; --line: #3a3a3a; --accent: #8fb8e4; --btn: #e8e8e8; --btnfg: #161616; --media: #000000;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161616; --panel: #1f1f1f; --fg: #e8e8e8; --mut: #ababab; --line: #3a3a3a; --accent: #8fb8e4; --btn: #e8e8e8; --btnfg: #161616; --media: #000000;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 18px/1.6 var(--f-body); overflow-x: hidden; text-rendering: optimizeLegibility; }
+main { max-width: 1000px; margin: 0 auto; padding: 44px 20px 90px; }
+main > * { min-width: 0; }
+/* title block */
+header { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; margin-bottom: 30px; }
+header img { height: 170px; width: auto; display: block; }
+h1 { font: 700 clamp(1.9rem, 4.6vw, 2.9rem)/1.15 var(--f-head); margin: 0 0 14px; letter-spacing: -0.01em; }
+.authors { margin: 0 0 2px; font-size: 1.08rem; }
+.affil { color: var(--mut); font-size: 15px; margin: 0 0 6px; }
+.venue { color: var(--accent); font-family: var(--f-sans); font-size: 15px; font-weight: 600; margin: 0 0 18px; }
+.links, nav.top { display: flex; flex-wrap: wrap; gap: 10px; }
+.links a { display: inline-block; padding: 6px 16px; border-radius: 4px; background: var(--btn); color: var(--btnfg); text-decoration: none; font-size: 15px; font-weight: 500; }
+.links a.off { background: transparent; color: var(--mut); border: 1px solid var(--line); }
+nav.top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); margin: 0 -20px 34px; padding: 9px 20px; gap: 10px; justify-content: flex-start; }
+nav.top a { display: inline-block; padding: 2px 8px; color: var(--fg); text-decoration: none; font-size: 15px; }
+nav.top a:hover { color: var(--accent); text-decoration: underline; }
+/* sections */
+section { margin: 0 0 84px; }
+h2 { font: 700 1.6rem/1.25 var(--f-head); margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+h3 { font: 650 1.05rem/1.3 var(--f-head); margin: 0 0 6px; }
+nav.top, .links, .authors, .affil, .labels, figcaption, .cmp-top, a.tile b, footer { font-family: var(--f-sans); }
+p { margin: 0 0 12px; }
+a { color: inherit; }
+.lead { max-width: 68ch; margin-bottom: 20px; }
+video, img.fig { width: 100%; height: auto; display: block; border-radius: 4px; background: var(--media); border: 1px solid var(--line); }
+.hero video { aspect-ratio: 16 / 9; }
+figure { margin: 0; min-width: 0; }
+figcaption { font-size: 14px; color: var(--mut); margin-top: 6px; line-height: 1.4; }
+.abstract p { max-width: 72ch; }
+a.cite { text-decoration: none; }
+/* picture tiles: the whole tile is the click target */
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); gap: 16px; }
+.tiles.big { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; }
+a.tile { display: block; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); color: var(--fg); text-decoration: none; padding: 8px; min-width: 0; }
+a.tile:hover, a.tile:focus-visible { border-color: var(--accent); }
+a.tile img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 2px; background: var(--media); }
+.tiles.big a.tile img { aspect-ratio: 16 / 10; }
+a.tile b { display: block; font-size: 15px; font-weight: 600; line-height: 1.3; margin: 8px 2px 2px; }
+.tiles.big a.tile b { font: 600 1.15rem/1.3 var(--f-head); }
+/* method: a pipeline of cards */
+.pipeline { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 18px; counter-reset: step; }
+.card { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 8px 8px 12px; min-width: 0; }
+.card video { aspect-ratio: 16 / 9; border: 0; border-radius: 8px; }
+.card h3 { display: flex; align-items: center; gap: 8px; margin: 10px 4px 4px; }
+.card h3::before { counter-increment: step; content: counter(step); display: inline-grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: var(--bg); font-size: 13px; font-weight: 700; }
+.card p { margin: 0 4px; color: var(--fg); font-size: 16px; line-height: 1.55; }
+.dots { display: flex; align-items: center; gap: 4px; margin: 8px 4px 0; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); border: 1.5px solid var(--accent); }
+.dots i.h { background: transparent; }
+.dots small { margin-left: 6px; font-size: 12px; color: var(--mut); }
+/* comparison slider */
+.cmp { margin: 0; }
+.cmp-top { display: flex; justify-content: space-between; margin: 0 4px 4px; font-size: 12px; color: var(--mut); }
+.cmp-stage { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; border: 1px solid var(--line); background: var(--media); touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: ew-resize; --cut: 50%; }
+.cmp-stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 70%; border: 0; border-radius: 0; pointer-events: none; }
+#cmp-b { clip-path: inset(0 0 0 var(--cut)); }
+.cmp-handle { position: absolute; top: 0; bottom: 0; left: var(--cut); width: 44px; margin-left: -22px; touch-action: none; outline: none; }
+.cmp-handle::before { content: ""; position: absolute; left: 20.5px; top: 0; bottom: 0; width: 3px; background: #fff; box-shadow: 0 0 4px rgba(0, 0, 0, .6); }
+.cmp-handle i { position: absolute; left: 5px; top: 50%; width: 34px; height: 34px; margin-top: -17px; border-radius: 50%; background: #fff; box-shadow: 0 1px 6px rgba(0, 0, 0, .5); }
+.cmp-handle i::after { content: "\2194"; position: absolute; inset: 0; display: grid; place-items: center; color: #1b2120; font: 700 18px/1 system-ui, sans-serif; }
+.cmp-handle:focus-visible i { outline: 3px solid var(--accent); }
+.cmp figcaption { text-align: center; font-size: 12px; margin-top: 4px; }
+/* robot */
+.trial { display: grid; gap: 8px; margin: 0 0 40px; }
+.trial .labels { display: grid; font-size: 13px; color: var(--mut); text-align: center; line-height: 1.3; }
+.trial .l3 { grid-template-columns: repeat(3, 1fr); }
+.trial .l2 { grid-template-columns: repeat(2, 1fr); }
+.trial video { aspect-ratio: 3 / 1; }
+.trial .l2 + video { aspect-ratio: 32 / 9; }
+.trial.real video { aspect-ratio: auto; }
+.trial.real .labels { font-size: 13px; }
+.trial p { color: var(--fg); margin: 4px 0 0; max-width: 75ch; }
+.trial p.nums { color: var(--fg); font-weight: 500; margin: 0; }
+/* bibtex and references */
+.bib { position: relative; }
+pre { margin: 0; padding: 16px 18px; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); font: 13px/1.55 var(--f-mono); overflow-x: auto; color: var(--fg); white-space: pre-wrap; word-break: break-word; }
+.copy { position: absolute; right: 10px; top: 10px; padding: 3px 12px; border-radius: 4px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); font: 500 12px var(--f-sans); cursor: pointer; }
+.refs { margin: 0; padding-left: 22px; color: var(--mut); font-size: 15px; }
+.refs li { margin: 0 0 8px; }
+.refs a { word-break: break-all; }
+footer { color: var(--mut); font-size: 14px; text-align: center; }
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  main { padding: 26px 16px 70px; }
+  header { grid-template-columns: 1fr; justify-items: start; gap: 14px; }
+  header img { height: 120px; }
+  .links, nav.top { justify-content: flex-start; }
+  nav.top { margin: 0 -16px 28px; padding: 8px 16px; }
+  section { margin-bottom: 64px; }
+  .pipeline { grid-template-columns: 1fr; }
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .tiles.big { grid-template-columns: 1fr; }
+  .trial .labels { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+:root { --pb-color: #F2725A; --pb-font: "Trebuchet MS", system-ui, sans-serif; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --pb-color: #FF8F78; } }
+:root[data-theme="dark"] { --pb-color: #FF8F78; }
+.pb { color: var(--pb-color); font-family: var(--pb-font); font-weight: 700; letter-spacing: .01em; }
+</style>
+</head>
+<body>
+<main>
+<header>
+<img src="media/pokebot.png" alt="The PokeBot robot">
+<div>
+<h1><span class="pb">PokeBot</span>: Physics-Ready Digital Twins from a Phone and a Poke</h1>
+<p class="venue">Supplementary material</p>
+</div>
+</header>
+
+<nav class="top" aria-label="Sections">
+<a href="#video">Video</a><a href="#abstract">Abstract</a><a href="#scenes">Scenes</a><a href="#objects">Objects</a><a href="#method">Method</a><a href="#robot">Robot trials</a>
+</nav>
+
+<section id="video" class="hero">
+<video controls muted loop playsinline preload="metadata" poster="media/video/poster.jpg"><source src="media/video/release_v13.mp4" type="video/mp4"></video>
+</section>
+
+<section id="abstract" class="abstract">
+<h2>Abstract</h2>
+<p>Visual reconstruction tools for real2sim recover object shapes, but appearance alone does not uniquely determine interaction physics properties like friction or mass distribution. We introduce <span class="pb">PokeBot</span>, a cheap and accessible framework which turns human-driven pokes with force reading and single-phone captures into simulator assets rich in interaction physics that are useful for real2sim2real manipulation. <span class="pb">PokeBot</span> provides the missing interaction measurements: a person pushing objects with a US$20 force probe and a phone/tablet with LiDAR depth. Our key insight is that foundation vision models can now recover object geometry and motion from a phone&#x27;s color video and depth, while humans can choose informative pushes from our strong object interaction intuitions. Together, these enable system identification with a single force sensor, without motion capture, multi-axis force/torque sensors or robots. <span class="pb">PokeBot</span> scales to complex environments and objects. Paired with recent advances in monocular agentic scene-reconstruction methods, <span class="pb">PokeBot</span> identifies and produces entire structured scenes with sliding and articulated objects, such as a kitchen counter or an office desk. Across 404 held-out pokes on 35 objects and articulated parts, 21 of them in 3 scanned scenes, the fitted twins cut the unseen interaction motion error by at least 58</p>
+</section>
+
+<section id="scenes">
+<h2>Scenes</h2>
+<p class="lead">Click on each simulator scene to see how <span class="pb">PokeBot</span> made them!</p>
+<div class="tiles big">
+<a class="tile" href="scenes/desk.html"><img src="media/scenes/desk.jpg" alt="" loading="lazy"><b>Desk</b></a>
+<a class="tile" href="scenes/small.html"><img src="media/scenes/small.jpg" alt="" loading="lazy"><b>Bedroom</b></a>
+<a class="tile" href="scenes/kitchen.html"><img src="media/scenes/kitchen.jpg" alt="" loading="lazy"><b>Kitchen</b></a>
+</div>
+</section>
+
+<section id="objects">
+<h2>Objects not part of a scene</h2>
+<p class="lead">Click on an object and see how <span class="pb">PokeBot</span> turns it into a simulator-ready asset.</p>
+<div class="tiles">
+<a class="tile" href="objects/jlcpcb_box.html"><img src="media/tiles/jlcpcb_box.jpg" alt="" loading="lazy"><b>JLCPCB box</b></a>
+<a class="tile" href="objects/barbecue_bottle.html"><img src="media/tiles/barbecue_bottle.jpg" alt="" loading="lazy"><b>Barbecue bottle</b></a>
+<a class="tile" href="objects/scissors.html"><img src="media/tiles/scissors.jpg" alt="" loading="lazy"><b>Scissors</b></a>
+<a class="tile" href="objects/charging_deck.html"><img src="media/tiles/charging_deck.jpg" alt="" loading="lazy"><b>Charging deck</b></a>
+<a class="tile" href="objects/tape.html"><img src="media/tiles/tape.jpg" alt="" loading="lazy"><b>3M tape</b></a>
+<a class="tile" href="objects/mech_keyboard.html"><img src="media/tiles/mech_keyboard.jpg" alt="" loading="lazy"><b>Mechanical keyboard</b></a>
+<a class="tile" href="objects/keyboard_yam_desk.html"><img src="media/tiles/keyboard_yam_desk.jpg" alt="" loading="lazy"><b>Mechanical keyboard on the wooden table</b></a>
+<a class="tile" href="objects/macbook_yam_table.html"><img src="media/tiles/macbook_yam_table.jpg" alt="" loading="lazy"><b>MacBook on the wooden table</b></a>
+<a class="tile" href="objects/pla_filament_box.html"><img src="media/tiles/pla_filament_box.jpg" alt="" loading="lazy"><b>PLA+ filament box</b></a>
+<a class="tile" href="objects/microwave_free_swing.html"><img src="media/tiles/microwave_free_swing.jpg" alt="" loading="lazy"><b>Free-swing microwave</b></a>
+</div>
+</section>
+
+<section id="method">
+<h2>Method</h2>
+<div class="pipeline">
+<div class="card"><video controls data-auto muted loop playsinline preload="metadata" poster="media/method/probe.jpg" src="media/method/probe.mp4"></video>
+<h3>Probe</h3><p><span class="pb">PokeBot</span> consists of a handheld 3D printed probe housing a force-measuring load cell.</p></div>
+<div class="card"><video controls data-auto muted loop playsinline preload="metadata" poster="media/method/shape.jpg" src="media/method/shape.mp4"></video>
+<h3>Scene scan</h3><p>The pipeline starts with a RGB + LiDAR picture of a scene captured from a phone. The depth gives the 3D points of the desk.</p></div>
+<div class="card"><video controls data-auto muted loop playsinline preload="metadata" poster="media/method/agent.jpg" src="media/method/agent.mp4"></video>
+<h3>Agentic segmentation</h3><p>A VLM agent prompts SAM 3 to segment every item in the scene. The VLM agent then sorts each item: a sliding object, a jointed part, or both.</p></div>
+<div class="card"><video controls data-auto muted loop playsinline preload="metadata" poster="media/method/closeup.jpg" src="media/method/closeup.mp4"></video>
+<h3>Close-up recording</h3><p>For a sliding object, a human records an up close RGB + LiDAR clip. Multiple pokes are performed at varying speeds, magnitudes, and locations on the object.</p></div>
+<div class="card"><video controls data-auto muted loop playsinline preload="metadata" poster="media/method/heldout.jpg" src="media/method/heldout.mp4"></video>
+<h3>Reconstruction and tracking</h3><p>SAM 3D gives our object mesh and placement. FoundationPose++ then tracks the object mesh through every frame.</p></div>
+<div class="card"><video controls data-auto muted loop playsinline preload="metadata" poster="media/method/replay.jpg" src="media/method/replay.mp4"></video>
+<h3>Physics fit</h3><p>In MuJoCo, we model the tracked object as a rigid body with 32 contact points following Coulomb friction. A VLM mass estimate bounds the overall object mass search range. A CEM search fits these mass/friction values until the simulated mesh follows the tracked mesh in the simulator.</p></div>
+<div class="card"><figure class="cmp" id="cmp">
+<div class="cmp-top"><span>Camera video</span><span>Fitted simulation</span></div>
+<div class="cmp-stage" id="cmp-stage">
+<video id="cmp-a" muted loop playsinline preload="auto" poster="media/compare/camera_grey_shoe_p11.jpg" src="media/compare/camera_grey_shoe_p11.mp4"></video>
+<video id="cmp-b" muted playsinline preload="auto" poster="media/compare/simulation_grey_shoe_p11.jpg" src="media/compare/simulation_grey_shoe_p11.mp4"></video>
+<div class="cmp-handle" id="cmp-handle" role="slider" tabindex="0" aria-label="Move the handle to compare the camera video and the fitted simulation" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><i></i></div>
+</div>
+<figcaption>Grey shoe, push 11, held out</figcaption>
+</figure>
+<h3>Held-out check</h3><p>For each push, the fit uses all the other pushes. Then the simulation predicts the push that was left out.</p></div>
+<div class="card"><video controls data-auto muted loop playsinline preload="metadata" poster="media/method/scene.jpg" src="media/method/scene.mp4"></video>
+<h3>Scene build</h3><p>Once we individually fit each object's physics in the scene, an agentic pipeline structurally places items together in one simulation scene.</p></div>
+</div>
+
+</section>
+
+<section id="robot">
+<h2>Robot trials</h2>
+<p class="lead">How far can pokes take us? We test <span class="pb">PokeBot</span> assets in two real-robot <span class="pb"><em>poke2sim2poke</em></span> tasks with YAM arms limited to pokes planned in MuJoCo.</p>
+
+<div class="trial real">
+<h3>Laptop retargeting</h3>
+<p>We have two YAM arms move a laptop through the poses of a human demonstration, turning it and closing its lid, limited to poking motions. The planner splits the demonstration into goal poses, shown in green, and plans each poke with <span class="pb">PokeBot</span>-identified physics.</p>
+<div class="labels l2"><span>Human demonstration</span><span>Robot</span></div>
+<video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/macbook_demo_goals.jpg" src="media/robot/macbook_demo_goals.mp4"></video>
+</div>
+
+<div class="trial real">
+<h3>Microwave door closing</h3>
+<p>A human demonstrates how fast to close a microwave, and a YAM arm plans a poke on the door to match the demonstration speed. Planned with <span class="pb">PokeBot</span>-identified physics, the door closes. Planned with VLM-inferred physics instead, the door rebounds to 31 degrees open.</p>
+<div class="labels l3"><span>Human demonstration, top</span><span><span class="pb">PokeBot</span>-identified physics, bottom left</span><span>VLM-inferred physics, bottom right</span></div>
+<video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/microwave_real.jpg" src="media/robot/microwave_real.mp4"></video>
+</div>
+</section>
+
+</main>
+<script>
+(function () {
+  // Play a clip while it is on screen. Without this script the clips keep their controls and play on demand.
+  var vids = document.querySelectorAll("video[data-auto]");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var v = e.target;
+        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else { v.pause(); }
+      });
+    }, { threshold: 0.25 });
+    vids.forEach(function (v) { io.observe(v); });
+  }
+})();
+</script>
+<script>
+(function () {
+  var stage = document.getElementById("cmp-stage"); if (!stage) return;
+  var a = document.getElementById("cmp-a"), b = document.getElementById("cmp-b"), h = document.getElementById("cmp-handle");
+  var pct = 50, drag = false, running = false;
+  function set(p) { pct = Math.max(0, Math.min(100, p)); stage.style.setProperty("--cut", pct + "%"); h.setAttribute("aria-valuenow", String(Math.round(pct))); }
+  function fromEvent(e) { var r = stage.getBoundingClientRect(); set((e.clientX - r.left) / r.width * 100); }
+  stage.addEventListener("pointerdown", function (e) { drag = true; try { stage.setPointerCapture(e.pointerId); } catch (x) {} fromEvent(e); });
+  stage.addEventListener("pointermove", function (e) { if (drag) fromEvent(e); });
+  function end() { drag = false; }
+  stage.addEventListener("pointerup", end); stage.addEventListener("pointercancel", end);
+  h.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") { set(pct - 5); e.preventDefault(); } if (e.key === "ArrowRight") { set(pct + 5); e.preventDefault(); } });
+  // The camera video drives the simulation video: one start, one rate, the same time.
+  function tick() {
+    if (!running) return;
+    if (Math.abs(b.currentTime - a.currentTime) > 0.02) b.currentTime = a.currentTime;
+    requestAnimationFrame(tick);
+  }
+  function play() {
+    if (running) return; running = true; b.pause(); b.playbackRate = a.playbackRate;
+    b.currentTime = a.currentTime; var p = a.play(); if (p && p.catch) p.catch(function () {}); requestAnimationFrame(tick);
+  }
+  function stop() { running = false; a.pause(); b.pause(); }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) play(); else stop(); }); }, { threshold: 0.3 }).observe(stage);
+  } else play();
+})();
+</script>
+</body>
+</html>
