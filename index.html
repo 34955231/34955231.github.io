@@ -41,6 +41,14 @@ h1 { font: 700 clamp(1.9rem, 4.6vw, 2.9rem)/1.15 var(--f-head); margin: 0 0 14px
 nav.top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); margin: 0 -20px 34px; padding: 9px 20px; gap: 10px; justify-content: flex-start; }
 nav.top a { display: inline-block; padding: 2px 8px; color: var(--fg); text-decoration: none; font-size: 15px; }
 nav.top a:hover { color: var(--accent); text-decoration: underline; }
+/* first screen: centred teaser, then the title */
+.teaser { max-width: 1200px; margin: 0 auto; padding: 20px 20px 0; text-align: center; }
+.teaser .plate { background: #ffffff; border-radius: 18px; overflow: hidden; line-height: 0; }
+.teaser .plate video { width: 100%; height: auto; display: block; border: 0; border-radius: 0; background: #ffffff; aspect-ratio: 1920 / 1010; }
+.teaser h1 { font-size: clamp(2.2rem, 5.4vw, 3.6rem); margin: 22px auto 12px; max-width: 18em; }
+.teaser .venue { margin: 0 0 6px; font-size: 17px; }
+.teaser + main { padding-top: 14px; }
+.teaser + main nav.top { justify-content: center; }
 /* sections */
 section { margin: 0 0 84px; }
 h2 { font: 700 1.6rem/1.25 var(--f-head); margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
@@ -128,14 +136,15 @@ footer { color: var(--mut); font-size: 14px; text-align: center; }
 </style>
 </head>
 <body>
-<main>
-<header>
-<img src="media/pokebot.png" alt="The PokeBot robot">
-<div>
+<section class="teaser" id="top">
+<div class="plate"><video id="teaser" autoplay muted loop playsinline preload="auto" poster="media/teaser/teaser_poster.jpg" aria-label="A probe pokes a keyboard and the keyboard slides"><source src="media/teaser/teaser.mp4" type="video/mp4"></video></div>
+<script>
+(function () { var v = document.getElementById("teaser"); if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.preload = "none"; v.pause(); } })();
+</script>
 <h1><span class="pb">PokeBot</span>: Physics-Ready Digital Twins from a Phone and a Poke</h1>
 <p class="venue">Supplementary material</p>
-</div>
-</header>
+</section>
+<main>
 
 <nav class="top" aria-label="Sections">
 <a href="#video">Video</a><a href="#abstract">Abstract</a><a href="#scenes">Scenes</a><a href="#objects">Objects</a><a href="#method">Method</a><a href="#robot">Robot trials</a>
