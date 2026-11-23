@@ -36,6 +36,12 @@ main > * { min-width: 0; }
 nav.top { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s1) var(--s3); padding: 12px var(--s3); margin: 0 0 var(--s4); background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); font-size: var(--t1); }
 nav.top a { color: var(--fg); text-decoration: none; font-weight: 600; }
 nav.top a:hover { color: var(--accent-text); text-decoration: underline; }
+/* references */
+.cite { font-size: var(--t1); white-space: nowrap; }
+.cite a { text-decoration: none; }
+ol.refs { margin: 0; padding-left: var(--s4); font-size: var(--t1); color: var(--mut); line-height: 1.5; }
+ol.refs li { margin: 0 0 var(--s1); padding-left: var(--s1); }
+ol.refs li:target { color: var(--fg); }
 /* sections */
 section { margin: 0 0 var(--s4); }
 h2 { font: 700 var(--t3)/1.25 var(--f); margin: 0 0 var(--s3); padding-bottom: var(--s1); border-bottom: 1px solid var(--accent); }
@@ -80,6 +86,46 @@ thead th.grp { text-align: center; border-bottom: 1px solid var(--line); }
 tbody tr:last-child td { border-bottom: 1px solid var(--fg); }
 tr.pbrow td { background: color-mix(in srgb, var(--accent) 16%, transparent); }
 td b { font-weight: 700; }
+/* held-out error chart */
+.vbox { position: relative; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s2); background: var(--bg); }
+.vb-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s1) var(--s2); margin: 0 0 var(--s2); }
+.vb-seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.vb-seg button { font: 600 var(--t1)/1 var(--f); padding: 8px 16px; border: 0; background: transparent; color: var(--fg); cursor: pointer; }
+.vb-seg button + button { border-left: 1px solid var(--line); }
+.vb-seg button[aria-pressed="true"] { background: var(--accent); color: #17181a; }
+.vb-legend { display: flex; flex-wrap: wrap; gap: 4px var(--s1); }
+.vb-legend button { display: inline-flex; align-items: center; gap: 6px; font: 400 var(--t1)/1.2 var(--f); color: var(--fg); background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 4px 8px; cursor: pointer; }
+.vb-legend button.hot { background: var(--panel); border-color: var(--line); }
+.vb-legend button[aria-pressed="true"] { border-color: var(--accent-text); }
+.vb-legend i { width: 12px; height: 12px; border: 1px solid var(--fg); display: inline-block; }
+.vb-seg button:focus-visible, .vb-legend button:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+.vb-plot { overflow-x: auto; }
+.vb-plot svg { display: block; font-family: var(--f); }
+.vb-plot text { fill: var(--fg); font-size: var(--t1); }
+.vb-plot text.pt { font-size: var(--t2); }
+.vb-plot text.rd { fill: #3D6FB6; font-weight: 700; }
+.vb-plot line.gr { stroke: var(--line); stroke-dasharray: 1 3; }
+.vb-plot line.ax { stroke: var(--fg); stroke-width: 1; }
+.vb-plot line.dash { stroke: #3D6FB6; stroke-width: 1.2; stroke-dasharray: 4 3; pointer-events: none; }
+.vb-plot .hit { fill: transparent; }
+.vb-plot .bar { stroke: var(--fg); stroke-width: .8; transform-box: fill-box; transform-origin: 50% 100%; transition: transform .8s cubic-bezier(.2, .7, .2, 1); }
+.vb-plot .vl { transition: opacity .5s .5s; }
+.vb-plot svg.pre .bar { transform: scaleY(0); }
+.vb-plot svg.pre .vl, .vb-plot svg.pre .dash { opacity: 0; }
+.vb-plot .b { cursor: pointer; transition: opacity .15s; outline: none; }
+.vb-plot svg.dim .b { opacity: .25; }
+.vb-plot svg.dim .b.on { opacity: 1; }
+.vb-plot .raised { pointer-events: none; }
+.vb-plot .raised .bar { stroke-width: 2.2; }
+.vb-plot .b:focus-visible .bar { stroke: var(--accent-text); stroke-width: 2.5; }
+.vb-note { margin: var(--s1) 0 0; font-size: var(--t1); color: var(--mut); }
+.vb-note:empty { margin: 0; }
+.vb-tip { position: absolute; z-index: 3; left: 0; top: 0; transform: translate(-50%, -100%); pointer-events: none; background: var(--fg); color: var(--bg); font-size: var(--t1); line-height: 1.35; padding: 6px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; transition: opacity .12s; }
+.vb-tip.on { opacity: 1; }
+.chartfig { margin: 0 0 var(--s2); }
+@media (max-width: 720px) { .vb-seg button { padding: 8px 10px; } }
+@media (prefers-reduced-motion: reduce) { .vb-plot .bar, .vb-plot .vl { transition: none; } }
+
 /* robot trials */
 h3.group { margin-top: var(--s3); }
 .rrow { display: grid; gap: var(--s2); margin: 0 0 var(--s2); }
@@ -109,7 +155,7 @@ h3.group { margin-top: var(--s3); }
 <p class="venue">Supplementary material</p>
 </section>
 <nav class="top" aria-label="Sections">
-<a href="#video">Video</a><a href="#abstract">Abstract</a><a href="#results">Results</a><a href="#objects">Objects</a><a href="#method">Method</a><a href="#robot">Robot trials</a>
+<a href="#video">Video</a><a href="#abstract">Abstract</a><a href="#results">Results</a><a href="#objects">Objects</a><a href="#method">Method</a><a href="#robot">Robot trials</a><a href="#references">References</a>
 </nav>
 <main>
 
@@ -120,30 +166,24 @@ h3.group { margin-top: var(--s3); }
 
 <section id="abstract" class="abstract">
 <h2>Abstract</h2>
-<p>Visual reconstruction tools for real2sim recover object shapes, but appearance alone does not uniquely determine interaction physics properties like friction or mass distribution. We introduce <span class="pb">PokeBot</span>, a cheap and accessible framework which turns human-driven pokes with force reading and single-phone captures into simulator assets rich in interaction physics that are useful for real2sim2real manipulation. <span class="pb">PokeBot</span> provides the missing interaction measurements: a person pushing objects with a US$20 force probe and a phone/tablet with LiDAR depth. Our key insight is that foundation vision models can now recover object geometry and motion from a phone&#x27;s color video and depth, while humans can choose informative pushes from our strong object interaction intuitions. Together, these enable system identification with a single force sensor, without motion capture, multi-axis force/torque sensors or robots. <span class="pb">PokeBot</span> scales to complex environments and objects. Paired with recent advances in monocular agentic scene-reconstruction methods, <span class="pb">PokeBot</span> identifies and produces entire structured scenes with sliding and articulated objects, such as a kitchen counter or an office desk. Across 404 held-out pokes on 35 objects and articulated parts, 21 of them in 3 scanned scenes, the fitted twins cut the unseen interaction motion error by at least 58% compared with assets whose physics come from VLM guesses. We also demonstrate sim2real transfer of <span class="pb">PokeBot</span> assets in 93 real robot rollouts across two different embodiments.</p>
+<p>Visual reconstruction tools for real2sim recover object shapes <span class="cite">[<a href="#ref-1">1</a>, <a href="#ref-2">2</a>]</span>, but appearance alone does not uniquely determine interaction physics properties like friction or mass distribution. We introduce <span class="pb">PokeBot</span>, a cheap and accessible framework which turns human-driven pokes with force reading and single-phone captures into simulator assets rich in interaction physics that are useful for real2sim2real manipulation. <span class="pb">PokeBot</span> provides the missing interaction measurements: a person pushing objects with a US$20 force probe and a phone/tablet with LiDAR depth. Our key insight is that foundation vision models can now recover object geometry and motion from a phone&#x27;s color video and depth <span class="cite">[<a href="#ref-1">1</a>, <a href="#ref-3">3</a>]</span>, while humans can choose informative pushes from our strong object interaction intuitions. Together, these enable system identification with a single force sensor, without motion capture, multi-axis force/torque sensors or robots <span class="cite">[<a href="#ref-4">4</a>, <a href="#ref-5">5</a>, <a href="#ref-6">6</a>]</span>. <span class="pb">PokeBot</span> scales to complex environments and objects. Paired with recent advances in monocular agentic scene-reconstruction methods <span class="cite">[<a href="#ref-7">7</a>]</span>, <span class="pb">PokeBot</span> identifies and produces entire structured scenes with sliding and articulated objects, such as a kitchen counter or an office desk. Across 404 held-out pokes on 35 objects and articulated parts, 21 of them in 3 scanned scenes, the fitted twins cut the unseen interaction motion error by at least 58% compared with assets whose physics come from VLM guesses. We also demonstrate sim2real transfer of <span class="pb">PokeBot</span> assets in 93 real robot rollouts across two different embodiments.</p>
 </section>
 
 <section id="results">
 <h2>Results</h2>
 <p class="lead">Median held-out error in mm, lower is better.</p>
-<figure class="pfig"><img src="media/fig/vlm_bars.png" alt="Bar charts of the held-out error of PokeBot, a simulator asset library and five VLM guesses" loading="lazy"><figcaption>Held-out error of <span class="pb">PokeBot</span> against a simulator asset library and VLM guesses.</figcaption></figure>
-<p style="margin-top: var(--s2)">Across 404 held-out pokes on 35 objects and articulated parts, the fitted twins cut the unseen interaction motion error by at least 58% compared with assets whose physics come from VLM guesses. <span class="pb">PokeBot</span> predicts held-out pokes with a median error of 20.4 mm, against 51.9 mm to 61.6 mm for the five VLMs.</p>
-<h3 style="margin-top: var(--s3)">Contact and coast</h3>
-<div class="tablebox">
-<table>
-<caption>Median held-out error (mm) of the probe pokes of 35 objects, split at the release: while the probe pushes, and during the free coast that follows.</caption>
-<thead>
-<tr><th></th><th class="grp" colspan="3">In contact</th><th class="grp" colspan="3">Coasting</th></tr>
-<tr><th>Source of &theta;</th><th>Sliding</th><th>Articulated</th><th>All</th><th>Sliding</th><th>Articulated</th><th>All</th></tr>
-</thead>
-<tbody>
-<tr><td>Claude Opus 5.5</td><td>33.0</td><td>40.6</td><td>36.9</td><td><b>8.1</b></td><td>6.6</td><td>8.0</td></tr>
-<tr><td>Claude Fable 5.2</td><td>32.7</td><td>42.0</td><td>40.9</td><td>8.8</td><td>6.8</td><td>8.1</td></tr>
-<tr class="pbrow"><td><span class="pb">PokeBot</span></td><td><b>19.6</b></td><td><b>8.4</b></td><td><b>12.7</b></td><td>8.9</td><td><b>5.6</b></td><td><b>7.8</b></td></tr>
-</tbody>
-</table>
+<figure class="chartfig">
+<div class="vbox" id="vb">
+<div class="vb-top"><div class="vb-seg" role="group" aria-label="Group shown"></div><div class="vb-legend" aria-label="Models"></div></div>
+<div class="vb-plot"></div>
+<p class="vb-note"></p>
+<div class="vb-tip" role="status"></div>
+<noscript><img src="media/fig/vlm_bars.png" alt="Bar charts of the held-out error of PokeBot, a simulator asset library and five VLM guesses" style="width:100%;height:auto"></noscript>
 </div>
-<p>While the probe pushes, the error of the guesses is about three times that of <span class="pb">PokeBot</span> (36.9 to 40.9 mm against 12.7 mm). During the free coast after the probe releases contact, the guesses and <span class="pb">PokeBot</span> have nearly the same error (8.0 to 8.1 mm against 7.8 mm).</p>
+<script type="application/json" id="vb-data">{"order":["fit","lib","opus","fable","gem","gpt","ast"],"models":{"fit":{"n":"PokeBot","c":"#3D6FB6"},"lib":{"n":"MolmoSpaces","c":"#BDBDBD"},"opus":{"n":"Claude Opus 5.5","c":"#E08214"},"fable":{"n":"Claude Fable 5.2","c":"#FDB863"},"gem":{"n":"Gemini 4 Carbon","c":"#807DBA"},"gpt":{"n":"GPT 5.6 Sol","c":"#238B45"},"ast":{"n":"GPT 6 Astra","c":"#A1D99B"}},"groups":["Sliding","Articulated","All"],"panels":[{"id":"a","title":"(a) Simulator asset library","short":"asset library","models":["fit","lib"]},{"id":"b","title":"(b) VLM guess from one photo","short":"one photo","models":["fit","opus","fable","gem","gpt","ast"]},{"id":"c","title":"(c) VLM guess from poke video","short":"poke video","models":["fit","opus","fable","gem","gpt","ast"]}],"v":{"a":{"Sliding":{"fit":25.7,"lib":50.2},"Articulated":{"fit":11.1,"lib":102.5},"All":{"fit":20.3,"lib":63.0}},"b":{"Sliding":{"fit":25.0,"opus":39.4,"fable":56.7,"gem":40.3,"gpt":36.2,"ast":45.5},"Articulated":{"fit":12.3,"opus":58.2,"fable":54.2,"gem":54.7,"gpt":89.4,"ast":78.0},"All":{"fit":20.4,"opus":56.1,"fable":56.7,"gem":51.9,"gpt":56.1,"ast":61.6}},"c":{"Sliding":{"fit":24.7,"opus":47.6,"fable":46.3,"gem":57.0,"gpt":45.5,"ast":64.8},"Articulated":{"fit":8.6,"opus":77.1,"fable":44.2,"gem":54.6,"gpt":84.9,"ast":77.1},"All":{"fit":19.5,"opus":57.0,"fable":46.3,"gem":54.6,"gpt":62.3,"ast":70.2}}}}</script>
+<figcaption>Held-out error of <span class="pb">PokeBot</span> against a simulator asset library (MolmoSpaces <span class="cite">[<a href="#ref-8">8</a>]</span>) and five VLM guesses (Claude Fable 5.2 <span class="cite">[<a href="#ref-9">9</a>]</span> among them).</figcaption>
+</figure>
+<p style="margin-top: var(--s2)">Across 404 held-out pokes on 35 objects and articulated parts, the fitted twins cut the unseen interaction motion error by at least 58% compared with assets whose physics come from VLM guesses. <span class="pb">PokeBot</span> predicts held-out pokes with a median error of 20.4 mm, against 51.9 mm to 61.6 mm for the five VLMs.</p>
 </section>
 
 <section id="objects">
@@ -206,7 +246,8 @@ h3.group { margin-top: var(--s3); }
 <div>
 <h3><b>2</b>Track</h3>
 <p>Off-the-shelf vision models reconstruct and track every object and articulated part.</p>
-<p>SAM 3D builds the mesh from one RGB photo and the LiDAR point map, and FoundationPose++ tracks it through the video.</p>
+<p>SAM 3 <span class="cite">[<a href="#ref-10">10</a>]</span> segments each object. SAM 3D <span class="cite">[<a href="#ref-1">1</a>]</span> builds the mesh from one RGB photo and the LiDAR point map. FoundationPose++ <span class="cite">[<a href="#ref-3">3</a>]</span> tracks it through the video.</p>
+<p>AprilTags <span class="cite">[<a href="#ref-11">11</a>, <a href="#ref-12">12</a>]</span> on the probe give its pose. MoSE3 <span class="cite">[<a href="#ref-13">13</a>]</span> tracks each articulated part.</p>
 </div>
 <figure class="pfig"><img src="media/fig/tracking.png" alt="The tracking pipeline" loading="lazy"><figcaption>We use RGB + LiDAR for tracking objects and the probe, then CEM for fitting <i>&theta;</i>.</figcaption></figure>
 </div>
@@ -214,8 +255,8 @@ h3.group { margin-top: var(--s3); }
 <div class="step">
 <div>
 <h3><b>3</b>Identify</h3>
-<p>The recorded forces are replayed at the measured contact points in a JAX rigid-body simulator.</p>
-<p>A CEM search fits each object&#x27;s mass distribution and friction map, or each joint&#x27;s friction and damping, until the simulated motion matches the tracked motion.</p>
+<p>The recorded forces are replayed at the measured contact points in a JAX <span class="cite">[<a href="#ref-14">14</a>]</span> rigid-body simulator.</p>
+<p>A CEM <span class="cite">[<a href="#ref-15">15</a>]</span> search fits each object&#x27;s mass distribution and friction map, or each joint&#x27;s friction and damping, until the simulated motion matches the tracked motion.</p>
 <div class="eq"><small>Sliding object</small><i>M</i>(<i>&rho;</i>) <i>q&#776;</i> = <i>J</i>(<i>q</i>, <i>p</i>)<sup>&#8868;</sup> <i>f</i> <i>a</i> &minus; <i>h</i>(<i>q</i>, <i>q&#775;</i>; <i>&mu;</i>, <i>b</i>)</div>
 <div class="eq"><small>Articulated part</small><i>I</i> <i>q&#776;</i> = <i>&tau;</i><sub>probe</sub> + <i>&tau;</i><sub>g</sub>(<i>q</i>) &minus; <i>c</i> <i>q&#775;</i> &minus; <i>&tau;</i><sub>f</sub></div>
 </div>
@@ -225,8 +266,8 @@ h3.group { margin-top: var(--s3); }
 <div class="step">
 <div>
 <h3><b>4</b>Use</h3>
-<p>Robots plan on the resulting assets in simulator and execute on the real objects.</p>
-<p>For multi-object scenes, we rebuild the whole scene in simulation from one RGB + LiDAR capture.</p>
+<p>Robots plan on the resulting assets in the MuJoCo <span class="cite">[<a href="#ref-16">16</a>]</span> simulator and execute on the real objects.</p>
+<p>For multi-object scenes, we rebuild the whole scene in simulation from one RGB + LiDAR capture, with an extension of REST3D <span class="cite">[<a href="#ref-7">7</a>]</span>.</p>
 </div>
 <figure class="pfig"><img src="media/fig/scenes.png" alt="The scene reconstruction steps" loading="lazy"><figcaption>From one RGB + LiDAR capture, a VLM agent segments the objects, places our <span class="pb">PokeBot</span> assets in the scene, and rebuilds a clean model in Blender.</figcaption></figure>
 </div>
@@ -251,7 +292,7 @@ h3.group { margin-top: var(--s3); }
 <h3 class="group">Force tasks</h3>
 <p>The robot must push with the right force.</p>
 <div class="rrow" style="grid-template-columns: 2.5946fr 3.4286fr">
-<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r4.jpg" src="media/robot/r4.mp4" style="aspect-ratio: 2.5946"></video><figcaption>YAM arms push the box with a learned policy. Left: the policy alone. Right: with the PokeBot force. 30 runs</figcaption></figure>
+<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r4.jpg" src="media/robot/r4.mp4" style="aspect-ratio: 2.5946"></video><figcaption>YAM arms push the box with a learned policy, MolmoAct2 <span class="cite">[<a href="#ref-17">17</a>]</span>. Left: the policy alone. Right: with the PokeBot force. 30 runs</figcaption></figure>
 <figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r5.jpg" src="media/robot/r5.mp4" style="aspect-ratio: 3.4286"></video><figcaption>YAM arms push the monitor with a learned policy. Left: the policy alone. Right: with the PokeBot force. 30 runs</figcaption></figure>
 </div>
 
@@ -261,6 +302,29 @@ h3.group { margin-top: var(--s3); }
 <figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r6.jpg" src="media/robot/r6.mp4" style="aspect-ratio: 2.0469"></video><figcaption>UR5 strikes planned in the twin, 28 strikes on 3 objects</figcaption></figure>
 <figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r7.jpg" src="media/robot/r7.mp4" style="aspect-ratio: 3.4122"></video><figcaption>Two YAM arms copy a human demonstration, 16 pushes</figcaption></figure>
 </div>
+</section>
+
+<section id="references">
+<h2>References</h2>
+<ol class="refs">
+<li id="ref-1">SAM 3D Team et al. SAM 3D: 3Dfy Anything in Images. Preprint, 2025.</li>
+<li id="ref-2">Qiuhong Shen, Xingyi Yang, Xinchao Wang. Anything-3D: Towards Single-view Anything Reconstruction in the Wild. Preprint, 2023.</li>
+<li id="ref-3">FoundationPose++ Contributors. FoundationPose++: Simple Tricks Boost FoundationPose Performance in High-Dynamic Scenes. GitHub repository, 2025.</li>
+<li id="ref-4">Tim Engelbracht et al. ForceTwin: Physics-informed Digital Twins for Robotic Manipulation from Instrumented Human Interaction. Preprint, 2026.</li>
+<li id="ref-5">Kuan-Ting Yu, Maria Bauza, Nima Fazeli, Alberto Rodriguez. More than a Million Ways to Be Pushed: A High-Fidelity Experimental Dataset of Planar Pushing. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2016.</li>
+<li id="ref-6">Nicholas Pfaff et al. Scalable Real2Sim: Physics-Aware Asset Generation Via Robotic Pick-and-Place Setups. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2025.</li>
+<li id="ref-7">Xiaoxuan Ma et al. REST3D: Reconstructing Physically Stable 3D Scenes from a Single Image. SIGGRAPH Asia 2026 Conference Papers, 2026.</li>
+<li id="ref-8">Yejin Kim et al. MolmoSpaces: A Large-Scale Open Ecosystem for Robot Navigation and Manipulation. Preprint, 2026.</li>
+<li id="ref-9">Anthropic. Claude Fable 5.2 and Claude Mythos 5.2. 2026.</li>
+<li id="ref-10">Nicolas Carion et al. SAM 3: Segment Anything with Concepts. International Conference on Learning Representations (ICLR), 2026.</li>
+<li id="ref-11">Edwin Olson. AprilTag: A Robust and Flexible Visual Fiducial System. IEEE International Conference on Robotics and Automation (ICRA), 2011.</li>
+<li id="ref-12">John Wang, Edwin Olson. AprilTag 2: Efficient and Robust Fiducial Detection. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2016.</li>
+<li id="ref-13">Jiahuan Cheng et al. MoSE3: Learning World-Space SE(3) at Every Pixel. Advances in Neural Information Processing Systems (NeurIPS), 2026.</li>
+<li id="ref-14">James Bradbury et al. JAX: Composable Transformations of Python+NumPy Programs. 2018.</li>
+<li id="ref-15">Reuven Y. Rubinstein, Dirk P. Kroese. The Cross-Entropy Method: A Unified Approach to Combinatorial Optimization, Monte-Carlo Simulation, and Machine Learning. Springer, 2004.</li>
+<li id="ref-16">Emanuel Todorov, Tom Erez, Yuval Tassa. MuJoCo: A Physics Engine for Model-Based Control. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2012.</li>
+<li id="ref-17">Haoquan Fang et al. MolmoAct2: Action Reasoning Models for Real-world Deployment. Preprint, 2026.</li>
+</ol>
 </section>
 
 </main>
@@ -276,6 +340,161 @@ h3.group { margin-top: var(--s3); }
       });
     }, { threshold: 0.25, rootMargin: "120px 0px" });
     vids.forEach(function (v) { io.observe(v); });
+  }
+})();
+</script>
+<script>
+(function () {
+  // Held-out error chart. The numbers are in the JSON block above. No outside request.
+  var root = document.getElementById("vb");
+  if (!root) return;
+  var D = JSON.parse(document.getElementById("vb-data").textContent);
+  var box = root.querySelector(".vb-plot"), tip = root.querySelector(".vb-tip"), legend = root.querySelector(".vb-legend"), seg = root.querySelector(".vb-seg"), note = root.querySelector(".vb-note");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var st = { group: null, lock: null, lh: null, bar: null, revealed: reduce || !("IntersectionObserver" in window) };
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
+
+  seg.innerHTML = ["Overview", "All", "Sliding", "Articulated"].map(function (g) { return '<button type="button" aria-pressed="' + (g === "Overview" ? "true" : "false") + '" data-g="' + g + '">' + g + "</button>"; }).join("");
+  legend.innerHTML = D.order.map(function (m) { return '<button type="button" aria-pressed="false" data-m="' + m + '"><i style="background:' + D.models[m].c + '"></i>' + esc(D.models[m].n) + "</button>"; }).join("");
+
+  function render() {
+    var W = Math.max(300, Math.floor(box.clientWidth));
+    var single = !!st.group, gl = single ? [st.group] : D.groups, stacked = W < 720, P = D.panels;
+    var TOP = 34, PH = stacked ? 190 : 230, BOT = 30, YMAX = single ? 125 : 110, PB = single ? 0.8 : 0.9, GG = 1.0, LAB = 22, ML = 44, BG = single ? (stacked ? 0.45 : 0.3) : 0;
+    var MIN = single ? 0 : 70;
+    var wn = function (n) { return n + (n - 1) * BG + PB; };
+    var slotU = function (n) { return single ? wn(n) + 1.2 : wn(n) + GG; };
+    var u;
+    if (stacked) {
+      u = Math.min((W - ML - LAB - 6) / (slotU(6) * gl.length), single ? 60 : 34);
+    } else {
+      var calc = function (aFixed) {
+        var fixed = ML * 3 + LAB + 28 + 6, units = 0;
+        P.forEach(function (p, i) { var s = slotU(p.models.length) * gl.length; if (i === 0 && aFixed) fixed += MIN * gl.length; else units += s; });
+        return (W - fixed) / units;
+      };
+      u = calc(false);
+      if (MIN && slotU(2) * u < MIN) u = calc(true);
+      u = Math.min(u, single ? 60 : 34);
+    }
+    var out = [], x = 0, y = 0, ys = PH / YMAX;
+    var pitch = u * (1 + BG);
+    var fsV = Math.max(9, Math.min(14, Math.floor((single ? pitch - 3 : u * (1 + 2 * Math.min(PB, GG)) - 4) / 2.3)));
+    var fsP = Math.max(9, Math.min(14, Math.floor((pitch - 3) / 3.3)));
+    P.forEach(function (p, pi) {
+      var n = p.models.length, lab = (!stacked && pi > 0) ? 0 : LAB, ml = ML + lab;
+      var slot = Math.max(slotU(n) * u, pi === 0 ? MIN : 0), pw = slot * gl.length, px = x + ml, base = y + TOP + PH;
+      out.push('<text class="pt" x="' + (px + pw / 2) + '" y="' + (y + 18) + '" text-anchor="middle">' + esc(p.title) + "</text>");
+      [0, 25, 50, 75, 100].forEach(function (t) {
+        var yy = base - t * ys;
+        out.push('<line class="' + (t ? "gr" : "ax") + '" x1="' + px + '" x2="' + (px + pw) + '" y1="' + yy + '" y2="' + yy + '"/>');
+        out.push('<text class="tk" x="' + (px - 6) + '" y="' + (yy + 4) + '" text-anchor="end">' + t + "</text>");
+      });
+      out.push('<line class="ax" x1="' + px + '" x2="' + px + '" y1="' + (y + TOP) + '" y2="' + base + '"/>');
+      if (lab) out.push('<text class="yl" transform="translate(' + (x + 12) + " " + (y + TOP + PH / 2) + ') rotate(-90)" text-anchor="middle">Median held-out error (mm)</text>');
+      gl.forEach(function (g, gi) {
+        var sx = px + gi * slot, pad = (slot - wn(n) * u) / 2, pbv = D.v[p.id][g].fit, fitTop = base - pbv * ys, lastR = sx;
+        p.models.forEach(function (m, j) {
+          var v = D.v[p.id][g][m], bx = sx + pad + j * u * (1 + BG) + (j > 0 ? PB * u : 0), h = v * ys, by = base - h, c = bx + u / 2;
+          var lbl = "";
+          if (single) {
+            lbl += '<text class="vl" style="font-size:' + fsV + 'px" x="' + c + '" y="' + (by - 5) + '" text-anchor="middle">' + v.toFixed(1) + "</text>";
+            if (m !== "fit") lbl += '<text class="vl rd" style="font-size:' + fsP + 'px" x="' + c + '" y="' + (by - fsV - 9) + '" text-anchor="middle">−' + Math.round((v - pbv) / v * 100) + "%</text>";
+          } else if (m === "fit") {
+            lbl += '<text class="vl" style="font-size:' + fsV + 'px" x="' + c + '" y="' + (by - 9) + '" text-anchor="middle">' + v.toFixed(1) + "</text>";
+          }
+          out.push('<g class="b" tabindex="-1" role="img" aria-label="' + esc(D.models[m].n + ", " + g + ", " + p.short + ", " + v.toFixed(1) + " mm") + '" data-m="' + m + '" data-p="' + p.id + '" data-g="' + g + '" data-v="' + v.toFixed(1) + '">' +
+            '<rect class="hit" x="' + bx + '" y="' + (y + TOP) + '" width="' + u + '" height="' + PH + '"/>' +
+            '<rect class="bar" x="' + bx + '" y="' + by + '" width="' + u + '" height="' + h + '" fill="' + D.models[m].c + '"/>' + lbl + "</g>");
+          lastR = bx + u;
+        });
+        if (!single) out.push('<line class="dash" x1="' + (sx + pad + u) + '" x2="' + lastR + '" y1="' + fitTop + '" y2="' + fitTop + '"/>');
+        out.push('<text class="gl" x="' + (sx + slot / 2) + '" y="' + (base + 20) + '" text-anchor="middle">' + g + "</text>");
+      });
+      if (stacked) y += TOP + PH + BOT + 16; else x += ml + pw + 14;
+    });
+    var H = stacked ? y - 16 : TOP + PH + BOT;
+    box.innerHTML = '<svg class="' + (st.revealed ? "" : "pre") + '" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '" role="group" aria-label="Median held-out error of PokeBot, a simulator asset library and five VLM guesses">' + out.join("") + '<g class="top"></g></svg>';
+    var first = box.querySelector(".b"); if (first) first.setAttribute("tabindex", "0");
+    st.bar = null; tip.classList.remove("on");
+    note.textContent = single ? "Percent is the error reduction of PokeBot against that model." : "";
+    apply();
+  }
+
+  function apply() {
+    var svg = box.firstChild; if (!svg) return;
+    var bars = svg.querySelectorAll(".b"), m = st.lh || st.lock, on = null;
+    if (st.bar) on = function (b) { return b === st.bar; };
+    else if (m) on = function (b) { return b.getAttribute("data-m") === m; };
+    Array.prototype.forEach.call(bars, function (b) { b.classList.toggle("on", !!on && on(b)); });
+    svg.classList.toggle("dim", !!on);
+    var top = svg.querySelector(".top"); top.innerHTML = "";
+    if (st.bar) { var c = st.bar.cloneNode(true); c.removeAttribute("tabindex"); c.removeAttribute("role"); c.removeAttribute("aria-label"); c.setAttribute("class", "raised"); top.appendChild(c); }
+    var cur = st.bar ? st.bar.getAttribute("data-m") : null;
+    Array.prototype.forEach.call(legend.querySelectorAll("button"), function (bt) {
+      var k = bt.getAttribute("data-m");
+      bt.classList.toggle("hot", k === st.lh || k === st.lock || k === cur);
+      bt.setAttribute("aria-pressed", k === st.lock ? "true" : "false");
+    });
+  }
+
+  function showTip(b) {
+    var rr = root.getBoundingClientRect(), br = b.querySelector(".bar").getBoundingClientRect();
+    var m = b.getAttribute("data-m"), p = D.panels.filter(function (q) { return q.id === b.getAttribute("data-p"); })[0];
+    tip.innerHTML = "<b>" + esc(D.models[m].n) + "</b><br>" + b.getAttribute("data-v") + " mm, " + b.getAttribute("data-g") + ", " + esc(p.short);
+    tip.classList.add("on");
+    var cx = br.left - rr.left + br.width / 2, tw = tip.offsetWidth;
+    var lift = st.group ? 46 : (m === "fit" ? 26 : 8);
+    tip.style.left = Math.min(Math.max(cx, tw / 2 + 4), rr.width - tw / 2 - 4) + "px";
+    tip.style.top = Math.max(br.top - rr.top - lift, tip.offsetHeight + 4) + "px";
+  }
+  function setBar(b) { st.bar = b; apply(); showTip(b); }
+  function clearBar() { if (!st.bar) return; st.bar = null; tip.classList.remove("on"); apply(); }
+  function barOf(e) { var t = e.target; return t && t.closest ? t.closest(".b") : null; }
+
+  box.addEventListener("pointerover", function (e) { var b = barOf(e); if (b) setBar(b); });
+  box.addEventListener("pointerout", function (e) { if (e.pointerType === "touch") return; var b = barOf(e); if (b && !(e.relatedTarget && b.contains(e.relatedTarget))) clearBar(); });
+  box.addEventListener("click", function (e) { var b = barOf(e); if (b) setBar(b); else clearBar(); });
+  box.addEventListener("focusin", function (e) { var b = barOf(e); if (b) setBar(b); });
+  box.addEventListener("focusout", function (e) { if (barOf(e)) clearBar(); });
+  box.addEventListener("keydown", function (e) {
+    var b = barOf(e); if (!b) return;
+    var k = e.key, d = (k === "ArrowRight" || k === "ArrowDown") ? 1 : (k === "ArrowLeft" || k === "ArrowUp") ? -1 : 0;
+    if (!d) return;
+    var all = Array.prototype.slice.call(box.querySelectorAll(".b")), i = all.indexOf(b) + d;
+    if (i < 0 || i >= all.length) return;
+    e.preventDefault(); b.setAttribute("tabindex", "-1"); all[i].setAttribute("tabindex", "0"); all[i].focus();
+  });
+  document.addEventListener("click", function (e) { if (!root.contains(e.target)) clearBar(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { st.lock = null; clearBar(); apply(); } });
+
+  legend.addEventListener("pointerover", function (e) { var b = e.target.closest && e.target.closest("button"); if (b && e.pointerType !== "touch") { st.lh = b.getAttribute("data-m"); apply(); } });
+  legend.addEventListener("pointerout", function (e) { if (st.lh) { st.lh = null; apply(); } });
+  legend.addEventListener("focusin", function (e) { var b = e.target.closest && e.target.closest("button"); if (b) { st.lh = b.getAttribute("data-m"); apply(); } });
+  legend.addEventListener("focusout", function () { st.lh = null; apply(); });
+  legend.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("button"); if (!b) return;
+    var m = b.getAttribute("data-m"); st.lock = (st.lock === m) ? null : m; apply();
+  });
+  seg.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("button"); if (!b) return;
+    var g = b.getAttribute("data-g"); st.group = (g === "Overview") ? null : g;
+    Array.prototype.forEach.call(seg.querySelectorAll("button"), function (x) { x.setAttribute("aria-pressed", x.getAttribute("data-g") === (st.group || "Overview") ? "true" : "false"); });
+    render();
+  });
+
+  render();
+  var rt = null;
+  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(render, 120); });
+  if (!st.revealed) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.disconnect(); st.revealed = true;
+        var svg = box.firstChild; if (svg) { svg.getBoundingClientRect(); svg.classList.remove("pre"); }
+      });
+    }, { threshold: 0.3 });
+    io.observe(box);
   }
 })();
 </script>
