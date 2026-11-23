@@ -133,6 +133,11 @@ footer { color: var(--mut); font-size: 14px; text-align: center; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --pb-color: #FF8F78; } }
 :root[data-theme="dark"] { --pb-color: #FF8F78; }
 .pb { color: var(--pb-color); font-family: var(--pb-font); font-weight: 700; letter-spacing: .01em; }
+.rooms { margin: 18px 0 0; font-family: var(--f-sans); font-size: 15px; }
+.yam-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 28px; }
+.yam-grid figure { margin: 0; }
+.yam-grid video { width: 100%; height: auto; display: block; border-radius: 4px; background: var(--media); }
+.yam-grid figcaption { font-family: var(--f-sans); font-size: 14px; margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -147,7 +152,7 @@ footer { color: var(--mut); font-size: 14px; text-align: center; }
 <main>
 
 <nav class="top" aria-label="Sections">
-<a href="#video">Video</a><a href="#abstract">Abstract</a><a href="#scenes">Scenes</a><a href="#objects">Objects</a><a href="#method">Method</a><a href="#robot">Robot trials</a>
+<a href="#video">Video</a><a href="#abstract">Abstract</a><a href="#objects">Objects</a><a href="#method">Method</a><a href="#robot">Robot trials</a>
 </nav>
 
 <section id="overview" class="hero">
@@ -164,31 +169,47 @@ footer { color: var(--mut); font-size: 14px; text-align: center; }
 <p>Visual reconstruction tools for real2sim recover object shapes, but appearance alone does not uniquely determine interaction physics properties like friction or mass distribution. We introduce <span class="pb">PokeBot</span>, a cheap and accessible framework which turns human-driven pokes with force reading and single-phone captures into simulator assets rich in interaction physics that are useful for real2sim2real manipulation. <span class="pb">PokeBot</span> provides the missing interaction measurements: a person pushing objects with a US$20 force probe and a phone/tablet with LiDAR depth. Our key insight is that foundation vision models can now recover object geometry and motion from a phone&#x27;s color video and depth, while humans can choose informative pushes from our strong object interaction intuitions. Together, these enable system identification with a single force sensor, without motion capture, multi-axis force/torque sensors or robots. <span class="pb">PokeBot</span> scales to complex environments and objects. Paired with recent advances in monocular agentic scene-reconstruction methods, <span class="pb">PokeBot</span> identifies and produces entire structured scenes with sliding and articulated objects, such as a kitchen counter or an office desk. Across 404 held-out pokes on 35 objects and articulated parts, 21 of them in 3 scanned scenes, the fitted twins cut the unseen interaction motion error by at least 58</p>
 </section>
 
-<section id="scenes">
-<h2>Scenes</h2>
-<p class="lead">Click on each simulator scene to see how <span class="pb">PokeBot</span> made them!</p>
-<div class="tiles big">
-<a class="tile" href="scenes/desk.html"><img src="media/scenes/desk.jpg" alt="" loading="lazy"><b>Desk</b></a>
-<a class="tile" href="scenes/small.html"><img src="media/scenes/small.jpg" alt="" loading="lazy"><b>Bedroom</b></a>
-<a class="tile" href="scenes/kitchen.html"><img src="media/scenes/kitchen.jpg" alt="" loading="lazy"><b>Kitchen</b></a>
-</div>
-</section>
-
 <section id="objects">
-<h2>Objects not part of a scene</h2>
+<h2>Objects</h2>
 <p class="lead">Click on an object and see how <span class="pb">PokeBot</span> turns it into a simulator-ready asset.</p>
 <div class="tiles">
+<a class="tile" href="objects/keyboard_yam_desk.html"><img src="media/tiles/keyboard_yam_desk.jpg" alt="" loading="lazy"><b>Mechanical keyboard (wood)</b></a>
+<a class="tile" href="objects/apple_keyboard.html"><img src="media/tiles/apple_keyboard.jpg" alt="" loading="lazy"><b>Apple keyboard</b></a>
 <a class="tile" href="objects/jlcpcb_box.html"><img src="media/tiles/jlcpcb_box.jpg" alt="" loading="lazy"><b>JLCPCB box</b></a>
-<a class="tile" href="objects/barbecue_bottle.html"><img src="media/tiles/barbecue_bottle.jpg" alt="" loading="lazy"><b>Barbecue bottle</b></a>
-<a class="tile" href="objects/scissors.html"><img src="media/tiles/scissors.jpg" alt="" loading="lazy"><b>Scissors</b></a>
-<a class="tile" href="objects/charging_deck.html"><img src="media/tiles/charging_deck.jpg" alt="" loading="lazy"><b>Charging deck</b></a>
-<a class="tile" href="objects/tape.html"><img src="media/tiles/tape.jpg" alt="" loading="lazy"><b>3M tape</b></a>
+<a class="tile" href="objects/pla_box_ur_desk.html"><img src="media/tiles/pla_box_ur_desk.jpg" alt="" loading="lazy"><b>PLA box (UR desk)</b></a>
+<a class="tile" href="objects/kitchen_drawer_top.html"><img src="media/tiles/kitchen_drawer_top.jpg" alt="" loading="lazy"><b>Kitchen drawer, top left</b></a>
 <a class="tile" href="objects/mech_keyboard.html"><img src="media/tiles/mech_keyboard.jpg" alt="" loading="lazy"><b>Mechanical keyboard</b></a>
-<a class="tile" href="objects/keyboard_yam_desk.html"><img src="media/tiles/keyboard_yam_desk.jpg" alt="" loading="lazy"><b>Mechanical keyboard on the wooden table</b></a>
-<a class="tile" href="objects/macbook_yam_table.html"><img src="media/tiles/macbook_yam_table.jpg" alt="" loading="lazy"><b>MacBook on the wooden table</b></a>
-<a class="tile" href="objects/pla_filament_box.html"><img src="media/tiles/pla_filament_box.jpg" alt="" loading="lazy"><b>PLA+ filament box</b></a>
-<a class="tile" href="objects/microwave_free_swing.html"><img src="media/tiles/microwave_free_swing.jpg" alt="" loading="lazy"><b>Free-swing microwave</b></a>
+<a class="tile" href="objects/grey_shoe.html"><img src="media/tiles/grey_shoe.jpg" alt="" loading="lazy"><b>Grey shoe</b></a>
+<a class="tile" href="objects/drawer_l1.html"><img src="media/tiles/drawer_l1.jpg" alt="" loading="lazy"><b>Desk drawer, left top</b></a>
+<a class="tile" href="objects/brown_shoe.html"><img src="media/tiles/brown_shoe.jpg" alt="" loading="lazy"><b>Brown shoe</b></a>
+<a class="tile" href="objects/tool_case.html"><img src="media/tiles/tool_case.jpg" alt="" loading="lazy"><b>Tool case (UR desk)</b></a>
+<a class="tile" href="objects/hammer.html"><img src="media/tiles/hammer.jpg" alt="" loading="lazy"><b>Hammer (UR desk)</b></a>
+<a class="tile" href="objects/drawer_c1.html"><img src="media/tiles/drawer_c1.jpg" alt="" loading="lazy"><b>Desk drawer, middle</b></a>
+<a class="tile" href="objects/drawer_l2.html"><img src="media/tiles/drawer_l2.jpg" alt="" loading="lazy"><b>Desk drawer, left middle</b></a>
+<a class="tile" href="objects/drawer_l3.html"><img src="media/tiles/drawer_l3.jpg" alt="" loading="lazy"><b>Desk drawer, left bottom</b></a>
+<a class="tile" href="objects/drawer_r1.html"><img src="media/tiles/drawer_r1.jpg" alt="" loading="lazy"><b>Desk drawer, right top</b></a>
+<a class="tile" href="objects/drawer_r2.html"><img src="media/tiles/drawer_r2.jpg" alt="" loading="lazy"><b>Desk drawer, right middle</b></a>
+<a class="tile" href="objects/drawer_r3.html"><img src="media/tiles/drawer_r3.jpg" alt="" loading="lazy"><b>Desk drawer, right bottom</b></a>
+<a class="tile" href="objects/kitchen_drawer_bottom.html"><img src="media/tiles/kitchen_drawer_bottom.jpg" alt="" loading="lazy"><b>Kitchen drawer, left bottom</b></a>
+<a class="tile" href="objects/cabinet_door.html"><img src="media/tiles/cabinet_door.jpg" alt="" loading="lazy"><b>Cabinet door</b></a>
+<a class="tile" href="objects/microwave_door.html"><img src="media/tiles/microwave_door.jpg" alt="" loading="lazy"><b>Microwave door</b></a>
+<a class="tile" href="objects/microwave_free_swing.html"><img src="media/tiles/microwave_free_swing.jpg" alt="" loading="lazy"><b>Microwave door, free swing</b></a>
+<a class="tile" href="objects/macbook.html"><img src="media/tiles/macbook.jpg" alt="" loading="lazy"><b>MacBook lid</b></a>
+<a class="tile" href="objects/monitor.html"><img src="media/tiles/monitor.jpg" alt="" loading="lazy"><b>Desk monitor</b></a>
+<a class="tile" href="objects/pla_filament_box.html"><img src="media/tiles/pla_filament_box.jpg" alt="" loading="lazy"><b>Filament box</b></a>
+<a class="tile" href="objects/stack_of_books.html"><img src="media/tiles/stack_of_books.jpg" alt="" loading="lazy"><b>Stack of books</b></a>
+<a class="tile" href="objects/barbecue_bottle.html"><img src="media/tiles/barbecue_bottle.jpg" alt="" loading="lazy"><b>Barbecue bottle</b></a>
+<a class="tile" href="objects/charging_deck.html"><img src="media/tiles/charging_deck.jpg" alt="" loading="lazy"><b>Charging deck</b></a>
+<a class="tile" href="objects/headphone_case.html"><img src="media/tiles/headphone_case.jpg" alt="" loading="lazy"><b>Headphone case</b></a>
+<a class="tile" href="objects/laptop_on_stands.html"><img src="media/tiles/laptop_on_stands.jpg" alt="" loading="lazy"><b>Laptop on stands</b></a>
+<a class="tile" href="objects/macbook_yam_table.html"><img src="media/tiles/macbook_yam_table.jpg" alt="" loading="lazy"><b>MacBook (wood)</b></a>
+<a class="tile" href="objects/macbook.html"><img src="media/tiles/macbook.jpg" alt="" loading="lazy"><b>MacBook base</b></a>
+<a class="tile" href="objects/scissors.html"><img src="media/tiles/scissors.jpg" alt="" loading="lazy"><b>Scissors</b></a>
+<a class="tile" href="objects/tape.html"><img src="media/tiles/tape.jpg" alt="" loading="lazy"><b>3M tape</b></a>
+<a class="tile" href="objects/toolbox.html"><img src="media/tiles/toolbox.jpg" alt="" loading="lazy"><b>Toolbox</b></a>
+<a class="tile" href="objects/heavy_box.html"><img src="media/tiles/heavy_box.jpg" alt="" loading="lazy"><b>Heavy box</b></a>
 </div>
+<p class="rooms">Room scans: <a href="scenes/desk.html">Desk</a>, <a href="scenes/kitchen.html">Kitchen</a>, <a href="scenes/small.html">Bedroom</a></p>
 </section>
 
 <section id="method">
@@ -238,6 +259,15 @@ footer { color: var(--mut); font-size: 14px; text-align: center; }
 <p>A human demonstrates how fast to close a microwave, and a YAM arm plans a poke on the door to match the demonstration speed. Planned with <span class="pb">PokeBot</span>-identified physics, the door closes. Planned with VLM-inferred physics instead, the door rebounds to 31 degrees open.</p>
 <div class="labels l3"><span>Human demonstration, top</span><span><span class="pb">PokeBot</span>-identified physics, bottom left</span><span>VLM-inferred physics, bottom right</span></div>
 <video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/microwave_real.jpg" src="media/robot/microwave_real.mp4"></video>
+</div>
+<div class="yam-grid">
+<figure><video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/grid/macbook.jpg" src="media/robot/grid/macbook.mp4"></video><figcaption>MacBook, two arms copy a human demonstration</figcaption></figure>
+<figure><video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/grid/microwave.jpg" src="media/robot/grid/microwave.mp4"></video><figcaption>Microwave door closing, 2 runs</figcaption></figure>
+<figure><video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/grid/keyboard.jpg" src="media/robot/grid/keyboard.mp4"></video><figcaption>Keyboard goal push</figcaption></figure>
+<figure><video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/grid/tidying.jpg" src="media/robot/grid/tidying.mp4"></video><figcaption>Keyboard desk tidying</figcaption></figure>
+<figure><video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/grid/monitor.jpg" src="media/robot/grid/monitor.mp4"></video><figcaption>Monitor push, learned policy, 30 runs</figcaption></figure>
+<figure><video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/grid/box_lid.jpg" src="media/robot/grid/box_lid.mp4"></video><figcaption>Box push and lid lift, learned policy, 30 runs</figcaption></figure>
+<figure><video controls data-auto muted loop playsinline preload="metadata" poster="media/robot/grid/box_course.jpg" src="media/robot/grid/box_course.mp4"></video><figcaption>Box obstacle course pushes, simulation</figcaption></figure>
 </div>
 </section>
 
