@@ -128,6 +128,27 @@ td b { font-weight: 700; }
 
 .lg path { fill: #4d4d4d; }
 .vb-legend .lg { flex: none; }
+/* robot trials charts and tiles */
+.vb-ref { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t1); color: var(--mut); padding: 4px 8px; }
+.vb-ref i { width: 22px; border-top: 2px dashed #9a9a9a; display: inline-block; }
+.vb-legend .sw, .vb-legend svg.sw { flex: none; }
+.vb-legend .sw path { fill: #3D6FB6; stroke: #17181a; stroke-width: 1; }
+.vb-plot path.pt3 { fill: #3D6FB6; stroke: #17181a; stroke-width: 1; }
+.vb-plot line.refline { stroke: #9a9a9a; stroke-width: 1.2; stroke-dasharray: 4 3; pointer-events: none; }
+.vb-plot circle.hit { fill: transparent; }
+.vb-plot circle.dot { fill: #ffffff; stroke: #17181a; stroke-width: 1.3; }
+.vb-plot line.med { stroke: #17181a; stroke-width: 2.4; }
+.vb-plot rect.band { fill: #FF8F78; opacity: .35; }
+.vb-plot text.pbl { fill: var(--accent-text); font-weight: 600; }
+.vb-plot text.n { fill: var(--mut); }
+.vb-plot text.xl { font-size: var(--t1); }
+.vb-plot svg.dim [data-k] { opacity: .25; transition: opacity .15s; }
+.vb-plot svg.dim [data-k].on { opacity: 1; }
+.vb-plot svg.pre .dot, .vb-plot svg.pre .med { opacity: 0; }
+.vb-plot .dot, .vb-plot .med { transition: opacity .6s .2s; }
+.vb-plot .b:focus-visible .dot, .vb-plot .b:focus-visible .pt3 { stroke: var(--accent-text); stroke-width: 2.5; }
+#robot .chartfig { margin: 0 0 var(--s2); }
+
 /* robot trials */
 h3.group { margin-top: var(--s3); }
 .rrow { display: grid; gap: var(--s2); margin: 0 0 var(--s2); }
@@ -277,31 +298,41 @@ h3.group { margin-top: var(--s3); }
 
 <section id="robot">
 <h2>Robot trials</h2>
-<p class="lead">93 real rollouts on two robots use the fitted twins.</p>
+<div class="rrow" style="grid-template-columns: repeat(3, minmax(0, 1fr))"><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_strikes.jpg" src="media/robot/wall_strikes.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>28 UR5 strikes</figcaption></figure><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_box.jpg" src="media/robot/wall_box.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>30 YAM box pushes</figcaption></figure><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_monitor.jpg" src="media/robot/wall_monitor.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>30 YAM monitor pushes</figcaption></figure></div>
+<p>93 real rollouts on two robots, with 4 door strikes and 1 retargeting run shown below.</p>
 
-<div class="rplots">
-<figure class="pfig"><img src="media/fig/strike_targets.png" alt="Real slide against target slide for 28 UR5 strikes" loading="lazy"><figcaption>Real slide against target slide for 28 UR5 strikes planned on <span class="pb">PokeBot</span> assets in simulation.</figcaption><p>Over 28 strikes, the real slide follows the target (Pearson <i>r</i> = 0.91), and the objects stop 0.25 body lengths from the target on average.</p></figure>
-<figure class="pfig"><img src="media/fig/yam_sweeps.png" alt="Monitor and box travel against the added push force" loading="lazy"><figcaption>Travel of the monitor screen (a) and of the box (b) for each added push force, 5 runs per force.</figcaption><p>At half of the <span class="pb">PokeBot</span> force or less, the screen moves at most 6 mm and the box at most 40 mm in all 30 runs.</p></figure>
-</div>
+<h3 class="group">Two regions of a poke</h3>
+<p>While the probe pushes, the error of the VLM guesses is about three times that of <span class="pb">PokeBot</span>. During the free coast after the release, the guesses and <span class="pb">PokeBot</span> have nearly the same error.</p>
+<figure class="chartfig"><div class="vbox" id="rb-coast"><div class="vb-top"><div class="vb-seg" role="group" aria-label="Group shown"></div><div class="vb-legend" aria-label="Legend"></div></div><div class="vb-plot"></div><p class="vb-note"></p><div class="vb-tip" role="status"></div><noscript><div class="tablebox"><table><caption>Median held-out error (mm), in contact and coasting</caption><thead><tr><th>Source</th><th>Slid.</th><th>Artic.</th><th>All</th><th>Slid.</th><th>Artic.</th><th>All</th></tr></thead><tbody><tr><td>Claude Opus 5.5</td><td>33.0</td><td>40.6</td><td>36.9</td><td>8.1</td><td>6.6</td><td>8.0</td></tr><tr><td>Claude Fable 5.2</td><td>32.7</td><td>42.0</td><td>40.9</td><td>8.8</td><td>6.8</td><td>8.1</td></tr><tr><td>PokeBot</td><td>19.6</td><td>8.4</td><td>12.7</td><td>8.9</td><td>5.6</td><td>7.8</td></tr></tbody></table></div></noscript></div><script type="application/json" id="rb-coast-data">{"order":["fit","opus","fable"],"models":{"fit":{"n":"PokeBot","c":"#3D6FB6"},"opus":{"n":"Claude Opus 5.5","c":"#E08214","logo":"anthropic"},"fable":{"n":"Claude Fable 5.2","c":"#FDB863","logo":"anthropic"}},"groups":["Sliding","Articulated","All"],"panels":[{"id":"c1","title":"In contact","short":"in contact","models":["fit","opus","fable"]},{"id":"c2","title":"Coasting","short":"coasting","models":["fit","opus","fable"]}],"v":{"c1":{"Sliding":{"opus":33.0,"fable":32.7,"fit":19.6},"Articulated":{"opus":40.6,"fable":42.0,"fit":8.4},"All":{"opus":36.9,"fable":40.9,"fit":12.7}},"c2":{"Sliding":{"opus":8.1,"fable":8.8,"fit":8.9},"Articulated":{"opus":6.6,"fable":6.8,"fit":5.6},"All":{"opus":8.0,"fable":8.1,"fit":7.8}}}}</script><figcaption>Median held-out error (mm) of the pokes of 35 objects, split at the release. The guesses come from one photo.</figcaption></figure>
+<p>This result tells which robot tasks need identified values.</p>
 
-<h3 class="group">Release tasks</h3>
-<p>The robot strikes and lets go, and the object coasts.</p>
+<h3 class="group">Coast: strikes</h3>
+<p>The UR5 strikes 3 objects at different speeds, 28 strikes in all. The strike speed is planned with a CEM <span class="cite">[<a href="#ref-15">15</a>]</span> search in simulation on the <span class="pb">PokeBot</span> asset.</p>
+<figure class="chartfig"><div class="vbox" id="rb-scatter"><div class="vb-top"><div class="vb-legend" aria-label="Legend"></div></div><div class="vb-plot"></div><p class="vb-note"></p><div class="vb-tip" role="status"></div><noscript><img src="media/fig/strike_targets.png" alt="Real slide against target slide for 28 UR5 strikes" style="width:100%;height:auto"></noscript></div><script type="application/json" id="rb-scatter-data">{"objects":[{"key":"hammer","name":"Hammer"},{"key":"box","name":"Box"},{"key":"tool case","name":"Tool case"}],"points":[{"o":"hammer","name":"Hammer","t":0.3,"r":0.246},{"o":"hammer","name":"Hammer","t":0.3,"r":0.353},{"o":"hammer","name":"Hammer","t":0.3,"r":0.385},{"o":"hammer","name":"Hammer","t":0.6,"r":0.417},{"o":"hammer","name":"Hammer","t":0.6,"r":0.298},{"o":"hammer","name":"Hammer","t":0.6,"r":0.131},{"o":"hammer","name":"Hammer","t":1.0,"r":1.1},{"o":"hammer","name":"Hammer","t":1.0,"r":0.75},{"o":"hammer","name":"Hammer","t":1.3,"r":1.453},{"o":"hammer","name":"Hammer","t":1.3,"r":1.584},{"o":"box","name":"Box","t":0.3,"r":0.342},{"o":"box","name":"Box","t":0.3,"r":0.326},{"o":"box","name":"Box","t":0.6,"r":0.905},{"o":"box","name":"Box","t":0.6,"r":0.767},{"o":"box","name":"Box","t":0.6,"r":0.442},{"o":"box","name":"Box","t":1.0,"r":1.639},{"o":"box","name":"Box","t":1.0,"r":1.578},{"o":"box","name":"Box","t":1.0,"r":1.529},{"o":"box","name":"Box","t":1.3,"r":2.064},{"o":"box","name":"Box","t":1.3,"r":2.042},{"o":"tool case","name":"Tool case","t":0.3,"r":0.284},{"o":"tool case","name":"Tool case","t":0.3,"r":0.24},{"o":"tool case","name":"Tool case","t":0.3,"r":0.246},{"o":"tool case","name":"Tool case","t":0.6,"r":0.531},{"o":"tool case","name":"Tool case","t":0.6,"r":0.404},{"o":"tool case","name":"Tool case","t":1.0,"r":0.783},{"o":"tool case","name":"Tool case","t":1.3,"r":1.674},{"o":"tool case","name":"Tool case","t":1.3,"r":1.567}]}</script><figcaption>Real slide against target slide for the 28 UR5 strikes.</figcaption></figure>
+<p>The UR5 also strikes a microwave door closed, 4 of 4.</p>
 <div class="rrow" style="grid-template-columns: 3.6641fr 3.2121fr">
 <figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r1.jpg" src="media/robot/r1.mp4" style="aspect-ratio: 3.6641"></video><figcaption>UR5 strike replayed in simulation. Left: real video. Middle: twin with an AI guess. Right: PokeBot twin.</figcaption></figure>
 <figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r2.jpg" src="media/robot/r2.mp4" style="aspect-ratio: 3.2121"></video><figcaption>UR5 closes a microwave door with a strike, 4 of 4. Left: PokeBot twin. Right: real robot.</figcaption></figure>
 </div>
+<figure class="chartfig"><div class="vbox" id="rb-replay"><div class="vb-top"><div class="vb-seg" role="group" aria-label="Group shown"></div><div class="vb-legend" aria-label="Legend"></div></div><div class="vb-plot"></div><p class="vb-note"></p><div class="vb-tip" role="status"></div><noscript><div class="tablebox"><table><caption>Median slide error (mm) of the replayed strikes</caption><thead><tr><th>Source</th><th>Hammer</th><th>Tool case</th><th>Box</th><th>All</th></tr></thead><tbody><tr><td>Claude Opus 5.5</td><td>13.8</td><td>6.8</td><td>36.5</td><td>17.4</td></tr><tr><td>Claude Fable 5.2</td><td>4.3</td><td>9.0</td><td>8.9</td><td>7.0</td></tr><tr><td>Gemini 4 Carbon</td><td>5.9</td><td>9.1</td><td>6.3</td><td>6.3</td></tr><tr><td>GPT 5.6 Sol</td><td>16.1</td><td>9.1</td><td>15.6</td><td>13.7</td></tr><tr><td>GPT 6 Astra</td><td>15.8</td><td>9.1</td><td>9.4</td><td>12.6</td></tr><tr><td>PokeBot</td><td>11.3</td><td>9.0</td><td>33.0</td><td>13.9</td></tr></tbody></table></div></noscript></div><script type="application/json" id="rb-replay-data">{"order":["fit","opus","fable","gem","gpt","ast"],"models":{"fit":{"n":"PokeBot","c":"#3D6FB6"},"opus":{"n":"Claude Opus 5.5","c":"#E08214","logo":"anthropic"},"fable":{"n":"Claude Fable 5.2","c":"#FDB863","logo":"anthropic"},"gem":{"n":"Gemini 4 Carbon","c":"#807DBA","logo":"googlegemini"},"gpt":{"n":"GPT 5.6 Sol","c":"#238B45","logo":"openai"},"ast":{"n":"GPT 6 Astra","c":"#A1D99B","logo":"openai"}},"groups":["All","Hammer","Tool case","Box"],"panels":[{"id":"r","title":"Strikes replayed in simulation","short":"replayed strikes","models":["fit","opus","fable","gem","gpt","ast"]}],"v":{"r":{"Hammer":{"opus":13.8,"fable":4.3,"gem":5.9,"gpt":16.1,"ast":15.8,"fit":11.3},"Tool case":{"opus":6.8,"fable":9.0,"gem":9.1,"gpt":9.1,"ast":9.1,"fit":9.0},"Box":{"opus":36.5,"fable":8.9,"gem":6.3,"gpt":15.6,"ast":9.4,"fit":33.0},"All":{"opus":17.4,"fable":7.0,"gem":6.3,"gpt":13.7,"ast":12.6,"fit":13.9}}}}</script><figcaption>Median slide error (mm) when the 28 strikes are replayed in simulation from the tracked release state. The guesses come from one photo.</figcaption></figure>
+<p>Every source is within 6 to 17 mm of the tracked slide, and <span class="pb">PokeBot</span> lies inside this range. This spread is of the size of the tracking error.</p>
 
-<h3 class="group">Force tasks</h3>
-<p>The robot must push with the right force.</p>
+<h3 class="group">Contact: pushing with a learned policy</h3>
+<p>Two YAM arms run MolmoAct2 <span class="cite">[<a href="#ref-17">17</a>]</span>, a policy fine-tuned on teleoperated demonstrations. The policy must push a box and then lift its lid. A heavy vise is inside the box.</p>
+<p>The policy alone never slides the box (0 of 5 runs). All five VLMs suggest a feedforward force of 0 N.</p>
+<p><span class="pb">PokeBot</span> gives 22.6 N for the box and 25 N for the monitor. With this force the screen goes down in 5 of 5 runs and the lid comes off in 3 of 5 runs.</p>
+<figure class="chartfig"><div class="vbox" id="rb-sweeps"><div class="vb-top"><div class="vb-legend" aria-label="Legend"></div></div><div class="vb-plot"></div><p class="vb-note"></p><div class="vb-tip" role="status"></div><noscript><img src="media/fig/yam_sweeps.png" alt="Monitor and box travel against the added push force" style="width:100%;height:auto"></noscript></div><script type="application/json" id="rb-sweeps-data">{"panels":[{"title":"Monitor: push the screen down","short":"monitor","ymin":-10,"ymax":100,"ticks":[0,50,100],"levels":[{"pct":0,"n":"0","runs":[0.6,6.2,0.1,4.9,4.9],"median":4.9,"pb":false},{"pct":25,"n":"6.2","runs":[0.3,-0.3,2.1,-2.7,-0.4],"median":-0.3,"pb":false},{"pct":50,"n":"12.5","runs":[3.9,5.6,1.0,1.5,-0.0],"median":1.5,"pb":false},{"pct":75,"n":"18.7","runs":[77.7,63.8,47.5,65.6,69.3],"median":65.6,"pb":false},{"pct":100,"n":"25","runs":[91.4,92.9,85.6,74.9,86.4],"median":86.4,"pb":true},{"pct":125,"n":"31.2","runs":[90.4,12.2,79.5,83.4,77.8],"median":79.5,"pb":false}]},{"title":"Box: slide the box, then take off the lid","short":"box","ymin":-20,"ymax":270,"ticks":[0,100,200],"levels":[{"pct":0,"n":"0","runs":[5.4,22.2,3.1,-9.0,11.6],"median":5.4,"pb":false},{"pct":25,"n":"5.7","runs":[8.7,7.2,23.0,2.6,33.4],"median":8.7,"pb":false},{"pct":50,"n":"11.3","runs":[21.3,0.5,40.2,3.1,15.6],"median":15.6,"pb":false},{"pct":75,"n":"17","runs":[155.2,134.6,171.5,185.0,209.4],"median":171.5,"pb":false},{"pct":100,"n":"22.6","runs":[127.2,226.0,253.4,230.7,223.3],"median":226.0,"pb":true},{"pct":125,"n":"28.3","runs":[179.3,42.3,249.4,193.0,156.4],"median":179.3,"pb":false}]}]}</script><figcaption>Travel of the monitor screen and of the box, 5 runs for each added push force. Each dot is one run. The bar is the median.</figcaption></figure>
+<p>The policy and the controller gains are the same in every run. No other level gives a higher success on either task.</p>
+<p>At 125 % of the <span class="pb">PokeBot</span> force, the policy fails in run 2 of 5 on the monitor. The gripper slips past the top of the monitor casing.</p>
+<p>At 125 % of the <span class="pb">PokeBot</span> force, the box task succeeds in 1 of 5 runs. The box slides into positions that are unsafe or out of distribution for the right arm.</p>
 <div class="rrow" style="grid-template-columns: 2.5946fr 3.4286fr">
-<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r4.jpg" src="media/robot/r4.mp4" style="aspect-ratio: 2.5946"></video><figcaption>YAM arms push the box with a learned policy, MolmoAct2 <span class="cite">[<a href="#ref-17">17</a>]</span>. Left: the policy alone. Right: with the PokeBot force. 30 runs</figcaption></figure>
-<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r5.jpg" src="media/robot/r5.mp4" style="aspect-ratio: 3.4286"></video><figcaption>YAM arms push the monitor with a learned policy. Left: the policy alone. Right: with the PokeBot force. 30 runs</figcaption></figure>
+<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r4.jpg" src="media/robot/r4.mp4" style="aspect-ratio: 2.5946"></video><figcaption>YAM arms push the box with a learned policy. Left: the policy alone. Right: with the PokeBot force.</figcaption></figure>
+<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r5.jpg" src="media/robot/r5.mp4" style="aspect-ratio: 3.4286"></video><figcaption>YAM arms push the monitor with a learned policy. Left: the policy alone. Right: with the PokeBot force.</figcaption></figure>
 </div>
 
-<h3 class="group">Transfer</h3>
-<p>Plans made in the twin run on the real robot.</p>
-<div class="rrow" style="grid-template-columns: 2.0469fr 3.4122fr">
-<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r6.jpg" src="media/robot/r6.mp4" style="aspect-ratio: 2.0469"></video><figcaption>UR5 strikes planned in the twin, 28 strikes on 3 objects</figcaption></figure>
+<h3 class="group">Retargeting</h3>
+<p>One YAM run copies a human demonstration of 16 pushes. The base turns 93.7 degrees, against 93.3 degrees in the demonstration. The real motion differs from the simulated motion by a median of 20.4 mm and 3.7 degrees.</p>
+<div class="rrow" style="grid-template-columns: 3.4122fr">
 <figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r7.jpg" src="media/robot/r7.mp4" style="aspect-ratio: 3.4122"></video><figcaption>Two YAM arms copy a human demonstration, 16 pushes</figcaption></figure>
 </div>
 </section>
@@ -505,6 +536,305 @@ h3.group { margin-top: var(--s3); }
     }, { threshold: 0.3 });
     io.observe(box);
   }
+})();
+</script>
+<script>
+(function () {
+  // Robot trials charts. All numbers are in the JSON blocks of the page. No outside request.
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var DEFAULT_DATA = null;
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
+  function json(id) { return JSON.parse(document.getElementById(id).textContent); }
+  function logoSvg(L, key, size, x, y) {
+    if (!key) return "";
+    return '<svg class="lg" x="' + x + '" y="' + y + '" width="' + size + '" height="' + size + '" viewBox="0 0 24 24"><path d="' + L[key] + '"/></svg>';
+  }
+  function tipShow(root, tip, html, cx, top) {
+    var rr = root.getBoundingClientRect();
+    tip.innerHTML = html; tip.classList.add("on");
+    var tw = tip.offsetWidth;
+    tip.style.left = Math.min(Math.max(cx - rr.left, tw / 2 + 4), rr.width - tw / 2 - 4) + "px";
+    tip.style.top = Math.max(top - rr.top, tip.offsetHeight + 4) + "px";
+  }
+  function reveal(box, st) {
+    if (st.revealed) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        io.disconnect(); st.revealed = true;
+        var svg = box.querySelector("svg"); if (svg) { svg.getBoundingClientRect(); svg.classList.remove("pre"); }
+      });
+    }, { threshold: 0.3 });
+    io.observe(box);
+  }
+
+  // ---------- grouped bars (the same code style as the results chart) ----------
+  function bars(cfg) {
+    var root = document.getElementById(cfg.id); if (!root) return;
+    var D = json(cfg.id + "-data"), L = json("vb-data").logos;
+    var box = root.querySelector(".vb-plot"), tip = root.querySelector(".vb-tip"), legend = root.querySelector(".vb-legend"), seg = root.querySelector(".vb-seg"), note = root.querySelector(".vb-note");
+    var st = { group: cfg.overview ? null : cfg.views[0], lock: null, lh: null, bar: null, revealed: reduce || !("IntersectionObserver" in window) };
+    var views = (cfg.overview ? ["Overview"] : []).concat(cfg.views);
+    seg.innerHTML = views.map(function (g) { return '<button type="button" aria-pressed="' + ((st.group || "Overview") === g ? "true" : "false") + '" data-g="' + esc(g) + '">' + esc(g) + "</button>"; }).join("");
+    legend.innerHTML = D.order.map(function (m) { return '<button type="button" aria-pressed="false" data-m="' + m + '"><i style="background:' + D.models[m].c + '"></i>' + logoSvg(L, D.models[m].logo, 14, 0, 0) + esc(D.models[m].n) + "</button>"; }).join("") +
+      (cfg.ref ? '<span class="vb-ref"><i></i>' + esc(cfg.ref.label) + "</span>" : "");
+    function render() {
+      var W = Math.max(300, Math.floor(box.clientWidth));
+      var single = !!st.group, gl = single ? [st.group] : D.groups, stacked = W < 720, P = D.panels;
+      var TOP = 34, PH = stacked ? 190 : 230, BOT = 30, YMAX = single ? cfg.ymaxS : cfg.ymax, PB = single ? 0.8 : 0.9, GG = 1.0, LAB = 22, ML = 44, BG = single ? (stacked ? 0.45 : 0.3) : 0;
+      var wn = function (n) { return n + (n - 1) * BG + PB; };
+      var slotU = function (n) { return single ? wn(n) + 1.2 : wn(n) + GG; };
+      var u;
+      var nmax = Math.max.apply(null, P.map(function (p) { return p.models.length; }));
+      if (stacked) u = Math.min((W - ML - LAB - 6) / (slotU(nmax) * gl.length), cfg.ucapS || (single ? 60 : 34));
+      else {
+        var fixed = ML * P.length + LAB + 14 * (P.length - 1) + 6, units = 0;
+        P.forEach(function (p) { units += slotU(p.models.length) * gl.length; });
+        u = Math.min((W - fixed) / units, cfg.ucapS || (single ? 60 : 34));
+      }
+      var ys = PH / YMAX, pitch = u * (1 + BG);
+      var fsV = Math.max(9, Math.min(14, Math.floor((single ? pitch - 3 : u * (1 + 2 * Math.min(PB, GG)) - 4) / 2.3)));
+      var fsP = Math.max(9, Math.min(14, Math.floor((pitch - 3) / 3.3)));
+      var LGS = Math.min(single ? 20 : 16, Math.floor(u - 2)), showLg = LGS >= 10; if (!showLg) LGS = 0;
+      var LGH = showLg ? LGS + 6 : 0; BOT += LGH;
+      var out = [], x = 0, y = 0;
+      P.forEach(function (p, pi) {
+        var n = p.models.length, lab = (!stacked && pi > 0) ? 0 : LAB, ml = ML + lab;
+        var slot = slotU(n) * u, pw = slot * gl.length, px = x + ml, base = y + TOP + PH;
+        out.push('<text class="pt" x="' + (px + pw / 2) + '" y="' + (y + 18) + '" text-anchor="middle">' + esc(p.title) + "</text>");
+        cfg.ticks.forEach(function (t) {
+          var yy = base - t * ys;
+          out.push('<line class="' + (t ? "gr" : "ax") + '" x1="' + px + '" x2="' + (px + pw) + '" y1="' + yy + '" y2="' + yy + '"/>');
+          out.push('<text class="tk" x="' + (px - 6) + '" y="' + (yy + 4) + '" text-anchor="end">' + t + "</text>");
+        });
+        out.push('<line class="ax" x1="' + px + '" x2="' + px + '" y1="' + (y + TOP) + '" y2="' + base + '"/>');
+        if (lab) out.push('<text class="yl" transform="translate(' + (x + 12) + " " + (y + TOP + PH / 2) + ') rotate(-90)" text-anchor="middle">' + esc(cfg.ylabel) + "</text>");
+        if (cfg.ref && single) out.push('<line class="refline" x1="' + px + '" x2="' + (px + pw) + '" y1="' + (base - cfg.ref.value * ys) + '" y2="' + (base - cfg.ref.value * ys) + '"/>');
+        gl.forEach(function (g, gi) {
+          var sx = px + gi * slot, pad = (slot - wn(n) * u) / 2, pbv = D.v[p.id][g].fit, fitTop = base - pbv * ys, lastR = sx;
+          p.models.forEach(function (m, j) {
+            var v = D.v[p.id][g][m], bx = sx + pad + j * u * (1 + BG) + (j > 0 ? PB * u : 0), h = v * ys, by = base - h, c = bx + u / 2, lbl = "";
+            if (single) {
+              lbl += '<text class="vl" style="font-size:' + fsV + 'px" x="' + c + '" y="' + (by - 5) + '" text-anchor="middle">' + v.toFixed(1) + "</text>";
+              if (cfg.pct && m !== "fit") lbl += '<text class="vl rd" style="font-size:' + fsP + 'px" x="' + c + '" y="' + (by - fsV - 9) + '" text-anchor="middle">−' + Math.round((v - pbv) / v * 100) + "%</text>";
+            } else if (m === "fit") {
+              lbl += '<text class="vl" style="font-size:' + fsV + 'px" x="' + c + '" y="' + (by - 9) + '" text-anchor="middle">' + v.toFixed(1) + "</text>";
+            }
+            var lg = showLg ? logoSvg(L, D.models[m].logo, LGS, c - LGS / 2, base + 5) : "";
+            out.push('<g class="b" tabindex="-1" role="img" aria-label="' + esc(D.models[m].n + ", " + g + ", " + p.short + ", " + v.toFixed(1) + " mm") + '" data-m="' + m + '" data-p="' + p.id + '" data-g="' + esc(g) + '" data-v="' + v.toFixed(1) + '">' +
+              '<rect class="hit" x="' + bx + '" y="' + (y + TOP) + '" width="' + u + '" height="' + (PH + LGH) + '"/>' +
+              '<rect class="bar" x="' + bx + '" y="' + by + '" width="' + u + '" height="' + h + '" fill="' + D.models[m].c + '"/>' + lbl + lg + "</g>");
+            lastR = bx + u;
+          });
+          if (!single) out.push('<line class="dash" x1="' + (sx + pad + u) + '" x2="' + lastR + '" y1="' + fitTop + '" y2="' + fitTop + '"/>');
+          out.push('<text class="gl" x="' + (sx + slot / 2) + '" y="' + (base + LGH + 20) + '" text-anchor="middle">' + esc(g) + "</text>");
+        });
+        if (stacked) y += TOP + PH + BOT + 16; else x += ml + pw + 14;
+      });
+      var H = stacked ? y - 16 : TOP + PH + BOT;
+      box.innerHTML = '<svg class="' + (st.revealed ? "" : "pre") + '" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '" role="group" aria-label="' + esc(cfg.label) + '">' + out.join("") + '<g class="top"></g></svg>';
+      var first = box.querySelector(".b"); if (first) first.setAttribute("tabindex", "0");
+      st.bar = null; tip.classList.remove("on");
+      note.textContent = (single && cfg.pct) ? "Percent is the error reduction of PokeBot against that model." : "";
+      apply();
+    }
+    function apply() {
+      var svg = box.firstChild; if (!svg) return;
+      var bs = svg.querySelectorAll(".b"), m = st.lh || st.lock, on = null;
+      if (st.bar) on = function (b) { return b === st.bar; };
+      else if (m) on = function (b) { return b.getAttribute("data-m") === m; };
+      Array.prototype.forEach.call(bs, function (b) { b.classList.toggle("on", !!on && on(b)); });
+      svg.classList.toggle("dim", !!on);
+      var top = svg.querySelector(".top"); top.innerHTML = "";
+      if (st.bar) { var c = st.bar.cloneNode(true); c.removeAttribute("tabindex"); c.removeAttribute("role"); c.removeAttribute("aria-label"); c.setAttribute("class", "raised"); top.appendChild(c); }
+      var cur = st.bar ? st.bar.getAttribute("data-m") : null;
+      Array.prototype.forEach.call(legend.querySelectorAll("button"), function (bt) {
+        var k = bt.getAttribute("data-m");
+        bt.classList.toggle("hot", k === st.lh || k === st.lock || k === cur);
+        bt.setAttribute("aria-pressed", k === st.lock ? "true" : "false");
+      });
+    }
+    function show(b) {
+      var br = b.querySelector(".bar").getBoundingClientRect(), m = b.getAttribute("data-m");
+      var p = D.panels.filter(function (q) { return q.id === b.getAttribute("data-p"); })[0];
+      tipShow(root, tip, "<b>" + esc(D.models[m].n) + "</b><br>" + b.getAttribute("data-v") + " mm, " + esc(b.getAttribute("data-g")) + ", " + esc(p.short), br.left + br.width / 2, br.top - (st.group ? 46 : (m === "fit" ? 26 : 8)));
+    }
+    function setBar(b) { st.bar = b; apply(); show(b); }
+    function clearBar() { if (!st.bar) return; st.bar = null; tip.classList.remove("on"); apply(); }
+    function barOf(e) { var t = e.target; return t && t.closest ? t.closest(".b") : null; }
+    box.addEventListener("pointerover", function (e) { var b = barOf(e); if (b) setBar(b); });
+    box.addEventListener("pointerout", function (e) { if (e.pointerType === "touch") return; var b = barOf(e); if (b && !(e.relatedTarget && b.contains(e.relatedTarget))) clearBar(); });
+    box.addEventListener("click", function (e) { var b = barOf(e); if (b) setBar(b); else clearBar(); });
+    box.addEventListener("focusin", function (e) { var b = barOf(e); if (b) setBar(b); });
+    box.addEventListener("focusout", function (e) { if (barOf(e)) clearBar(); });
+    box.addEventListener("keydown", function (e) {
+      var b = barOf(e); if (!b) return;
+      var k = e.key, d = (k === "ArrowRight" || k === "ArrowDown") ? 1 : (k === "ArrowLeft" || k === "ArrowUp") ? -1 : 0;
+      if (!d) return;
+      var all = Array.prototype.slice.call(box.querySelectorAll(".b")), i = all.indexOf(b) + d;
+      if (i < 0 || i >= all.length) return;
+      e.preventDefault(); b.setAttribute("tabindex", "-1"); all[i].setAttribute("tabindex", "0"); all[i].focus();
+    });
+    document.addEventListener("click", function (e) { if (!root.contains(e.target)) clearBar(); });
+    legend.addEventListener("pointerover", function (e) { var b = e.target.closest && e.target.closest("button"); if (b && e.pointerType !== "touch") { st.lh = b.getAttribute("data-m"); apply(); } });
+    legend.addEventListener("pointerout", function () { if (st.lh) { st.lh = null; apply(); } });
+    legend.addEventListener("focusin", function (e) { var b = e.target.closest && e.target.closest("button"); if (b) { st.lh = b.getAttribute("data-m"); apply(); } });
+    legend.addEventListener("focusout", function () { st.lh = null; apply(); });
+    legend.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("button"); if (!b) return;
+      var m = b.getAttribute("data-m"); st.lock = (st.lock === m) ? null : m; apply();
+    });
+    seg.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("button"); if (!b) return;
+      var g = b.getAttribute("data-g"); st.group = (g === "Overview") ? null : g;
+      Array.prototype.forEach.call(seg.querySelectorAll("button"), function (x) { x.setAttribute("aria-pressed", x.getAttribute("data-g") === (st.group || "Overview") ? "true" : "false"); });
+      render();
+    });
+    render();
+    var rt = null; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(render, 120); });
+    reveal(box, st);
+  }
+
+  // ---------- scatter: real slide against target slide ----------
+  function scatter(id) {
+    var root = document.getElementById(id); if (!root) return;
+    var D = json(id + "-data");
+    var box = root.querySelector(".vb-plot"), tip = root.querySelector(".vb-tip"), legend = root.querySelector(".vb-legend");
+    var st = { lock: null, lh: null, pt: null };
+    var SH = { hammer: "M0 -6a6 6 0 1 0 .01 0Z", box: "M-5.5 -5.5h11v11h-11Z", "tool case": "M0 -7L6.5 5h-13Z" };
+    legend.innerHTML = D.objects.map(function (o) { return '<button type="button" aria-pressed="false" data-m="' + esc(o.key) + '"><svg class="sw" width="14" height="14" viewBox="-8 -8 16 16"><path d="' + SH[o.key] + '"/></svg>' + esc(o.name) + "</button>"; }).join("") + '<span class="vb-ref"><i></i>Real slide equals target slide</span>';
+    function render() {
+      var W = Math.max(300, Math.floor(box.clientWidth)), H = W < 520 ? 300 : 340, ML = 52, MR = 12, MT = 12, MB = 56;
+      var pw = W - ML - MR, ph = H - MT - MB, X0 = 0, X1 = 1.5, Y1 = 2.2;
+      var sx = function (v) { return ML + (v - X0) / (X1 - X0) * pw; }, sy = function (v) { return MT + ph - v / Y1 * ph; };
+      var o = [];
+      [0, 1, 2].forEach(function (t) { o.push('<line class="' + (t ? "gr" : "ax") + '" x1="' + ML + '" x2="' + (ML + pw) + '" y1="' + sy(t) + '" y2="' + sy(t) + '"/><text class="tk" x="' + (ML - 6) + '" y="' + (sy(t) + 4) + '" text-anchor="end">' + t + "</text>"); });
+      o.push('<line class="ax" x1="' + ML + '" x2="' + ML + '" y1="' + MT + '" y2="' + (MT + ph) + '"/>');
+      [0.3, 0.6, 1.0, 1.3].forEach(function (t) { o.push('<line class="ax" x1="' + sx(t) + '" x2="' + sx(t) + '" y1="' + (MT + ph) + '" y2="' + (MT + ph + 4) + '"/><text class="tk" x="' + sx(t) + '" y="' + (MT + ph + 20) + '" text-anchor="middle">' + t.toFixed(1) + "</text>"); });
+      o.push('<text class="yl" transform="translate(14 ' + (MT + ph / 2) + ') rotate(-90)" text-anchor="middle">Real slide (body lengths)</text>');
+      o.push('<text class="xl" x="' + (ML + pw / 2) + '" y="' + (H - 8) + '" text-anchor="middle">Target slide (body lengths)</text>');
+      o.push('<line class="refline" x1="' + sx(0) + '" y1="' + sy(0) + '" x2="' + sx(1.5) + '" y2="' + sy(1.5) + '"/>');
+      var off = { hammer: -0.03, box: 0, "tool case": 0.03 };
+      D.points.forEach(function (p, i) {
+        o.push('<g class="b" tabindex="' + (i ? -1 : 0) + '" role="img" aria-label="' + esc(p.name + ", target " + p.t.toFixed(1) + ", real " + p.r.toFixed(2) + " body lengths") + '" data-m="' + esc(p.o) + '" data-i="' + i + '"><circle class="hit" cx="' + sx(p.t + off[p.o]) + '" cy="' + sy(p.r) + '" r="12"/><path class="pt3" transform="translate(' + sx(p.t + off[p.o]) + " " + sy(p.r) + ')" d="' + SH[p.o] + '"/></g>');
+      });
+      o.push('<g class="top"></g>');
+      box.innerHTML = '<svg width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '" role="group" aria-label="Real slide against target slide of the 28 UR5 strikes">' + o.join("") + "</svg>";
+      st.pt = null; tip.classList.remove("on"); apply();
+    }
+    function apply() {
+      var svg = box.firstChild; if (!svg) return;
+      var m = st.lh || st.lock, on = null;
+      if (st.pt) on = function (b) { return b === st.pt; }; else if (m) on = function (b) { return b.getAttribute("data-m") === m; };
+      Array.prototype.forEach.call(svg.querySelectorAll(".b"), function (b) { b.classList.toggle("on", !!on && on(b)); });
+      svg.classList.toggle("dim", !!on);
+      var cur = st.pt ? st.pt.getAttribute("data-m") : null;
+      Array.prototype.forEach.call(legend.querySelectorAll("button"), function (bt) { var k = bt.getAttribute("data-m"); bt.classList.toggle("hot", k === st.lh || k === st.lock || k === cur); bt.setAttribute("aria-pressed", k === st.lock ? "true" : "false"); });
+    }
+    function setPt(b) {
+      st.pt = b; apply();
+      var p = D.points[+b.getAttribute("data-i")], r = b.querySelector(".pt3").getBoundingClientRect();
+      tipShow(root, tip, "<b>" + esc(p.name) + "</b><br>Target " + p.t.toFixed(1) + ", real " + p.r.toFixed(2) + " body lengths", r.left + r.width / 2, r.top - 8);
+    }
+    function clr() { if (!st.pt) return; st.pt = null; tip.classList.remove("on"); apply(); }
+    var of = function (e) { return e.target.closest ? e.target.closest(".b") : null; };
+    box.addEventListener("pointerover", function (e) { var b = of(e); if (b) setPt(b); });
+    box.addEventListener("pointerout", function (e) { if (e.pointerType === "touch") return; var b = of(e); if (b && !(e.relatedTarget && b.contains(e.relatedTarget))) clr(); });
+    box.addEventListener("click", function (e) { var b = of(e); if (b) setPt(b); else clr(); });
+    box.addEventListener("focusin", function (e) { var b = of(e); if (b) setPt(b); });
+    box.addEventListener("focusout", function (e) { if (of(e)) clr(); });
+    box.addEventListener("keydown", function (e) {
+      var b = of(e); if (!b) return; var k = e.key, d = (k === "ArrowRight" || k === "ArrowDown") ? 1 : (k === "ArrowLeft" || k === "ArrowUp") ? -1 : 0; if (!d) return;
+      var all = Array.prototype.slice.call(box.querySelectorAll(".b")), i = all.indexOf(b) + d; if (i < 0 || i >= all.length) return;
+      e.preventDefault(); b.setAttribute("tabindex", "-1"); all[i].setAttribute("tabindex", "0"); all[i].focus();
+    });
+    document.addEventListener("click", function (e) { if (!root.contains(e.target)) clr(); });
+    legend.addEventListener("pointerover", function (e) { var b = e.target.closest && e.target.closest("button"); if (b && e.pointerType !== "touch") { st.lh = b.getAttribute("data-m"); apply(); } });
+    legend.addEventListener("pointerout", function () { if (st.lh) { st.lh = null; apply(); } });
+    legend.addEventListener("focusin", function (e) { var b = e.target.closest && e.target.closest("button"); if (b) { st.lh = b.getAttribute("data-m"); apply(); } });
+    legend.addEventListener("focusout", function () { st.lh = null; apply(); });
+    legend.addEventListener("click", function (e) { var b = e.target.closest && e.target.closest("button"); if (!b) return; var m = b.getAttribute("data-m"); st.lock = (st.lock === m) ? null : m; apply(); });
+    render(); var rt = null; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(render, 120); });
+  }
+
+  // ---------- dots: travel against the added push force ----------
+  function dots(id) {
+    var root = document.getElementById(id); if (!root) return;
+    var D = json(id + "-data");
+    var box = root.querySelector(".vb-plot"), tip = root.querySelector(".vb-tip"), legend = root.querySelector(".vb-legend");
+    var st = { lock: null, lh: null, pt: null, revealed: reduce || !("IntersectionObserver" in window) };
+    var KEYS = [["run", "Run"], ["median", "Median"], ["pb", "PokeBot force"]];
+    legend.innerHTML = KEYS.map(function (k) { return '<button type="button" aria-pressed="false" data-m="' + k[0] + '"><svg class="sw" width="14" height="14" viewBox="-8 -8 16 16">' + (k[0] === "run" ? '<circle r="4.5" fill="#fff" stroke="#17181a" stroke-width="1.3"/>' : k[0] === "median" ? '<line x1="-7" x2="7" y1="0" y2="0" stroke="#17181a" stroke-width="2.4"/>' : '<rect x="-6" y="-7" width="12" height="14" fill="#FF8F78"/>') + "</svg>" + k[1] + "</button>"; }).join("");
+    function render() {
+      var W = Math.max(300, Math.floor(box.clientWidth)), stacked = W < 720, PH = stacked ? 190 : 230, TOP = 54, BOT = 78, ML = 52, MR = 12, GAP = 24;
+      var pw = stacked ? W - ML - MR : (W - 2 * ML - MR - GAP) / 2, o = [], y0 = 0, x0 = 0;
+      D.panels.forEach(function (p, pi) {
+        var px = x0 + ML, base = y0 + TOP + PH, rng = p.ymax - p.ymin, sy = function (v) { return base - (v - p.ymin) / rng * PH; };
+        var step = pw / p.levels.length, cx = function (li) { return px + step * (li + 0.5); };
+        o.push('<text class="pt" x="' + (px + pw / 2) + '" y="' + (y0 + 20) + '" text-anchor="middle">' + esc(p.title) + "</text>");
+        var pbi = p.levels.findIndex(function (l) { return l.pb; });
+        o.push('<g data-k="pb" class="k"><rect class="band" x="' + (cx(pbi) - step * 0.42) + '" y="' + (y0 + TOP) + '" width="' + (step * 0.84) + '" height="' + PH + '"/><text class="pbl" x="' + cx(pbi) + '" y="' + (y0 + TOP - 6) + '" text-anchor="middle">PokeBot force</text></g>');
+        p.ticks.forEach(function (t) { o.push('<line class="' + (t === p.ymin || t === 0 ? "ax" : "gr") + '" x1="' + px + '" x2="' + (px + pw) + '" y1="' + sy(t) + '" y2="' + sy(t) + '"/><text class="tk" x="' + (px - 6) + '" y="' + (sy(t) + 4) + '" text-anchor="end">' + t + "</text>"); });
+        o.push('<line class="ax" x1="' + px + '" x2="' + px + '" y1="' + (y0 + TOP) + '" y2="' + base + '"/>');
+        o.push('<line class="ax" x1="' + px + '" x2="' + (px + pw) + '" y1="' + base + '" y2="' + base + '"/>');
+        if (pi === 0 || stacked) o.push('<text class="yl" transform="translate(' + (x0 + 14) + " " + (y0 + TOP + PH / 2) + ') rotate(-90)" text-anchor="middle">Travel (mm)</text>');
+        p.levels.forEach(function (l, li) {
+          o.push('<text class="tk" x="' + cx(li) + '" y="' + (base + 20) + '" text-anchor="middle">' + l.pct + " %</text><text class=\"tk n\" x=\"" + cx(li) + '" y="' + (base + 38) + '" text-anchor="middle">' + l.n + (step < 56 ? "" : " N") + "</text>");
+          o.push('<g data-k="median" class="k"><line class="med" x1="' + (cx(li) - step * 0.3) + '" x2="' + (cx(li) + step * 0.3) + '" y1="' + sy(l.median) + '" y2="' + sy(l.median) + '"/></g>');
+          l.runs.forEach(function (r, ri) {
+            var xx = cx(li) + (ri - 2) * Math.min(step * 0.11, 9);
+            o.push('<g class="b" data-k="run" tabindex="-1" role="img" aria-label="' + esc(p.short + ", " + l.pct + " percent of the PokeBot force, " + r.toFixed(1) + " mm") + '" data-s="' + esc(p.short + ", " + l.pct + " % of the PokeBot force (" + l.n + " N)") + '" data-v="' + r.toFixed(1) + '"><circle class="hit" cx="' + xx + '" cy="' + sy(r) + '" r="10"/><circle class="dot" cx="' + xx + '" cy="' + sy(r) + '" r="4.5"/></g>');
+          });
+        });
+        o.push('<text class="xl" x="' + (px + pw / 2) + '" y="' + (base + 66) + '" text-anchor="middle">' + (pw < 420 ? "Percent of the PokeBot force (N below)" : "Added push force, percent of the PokeBot force") + "</text>");
+        if (stacked) y0 += TOP + PH + BOT + 14; else x0 += ML + pw + GAP;
+      });
+      var H = stacked ? y0 - 14 : TOP + PH + BOT;
+      box.innerHTML = '<svg class="' + (st.revealed ? "" : "pre") + '" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '" role="group" aria-label="Travel in the force sweeps of the monitor and the box">' + o.join("") + "</svg>";
+      var first = box.querySelector(".b"); if (first) first.setAttribute("tabindex", "0");
+      st.pt = null; tip.classList.remove("on"); apply();
+    }
+    function apply() {
+      var svg = box.firstChild; if (!svg) return;
+      var m = st.lh || st.lock, on = !!(m || st.pt);
+      svg.classList.toggle("dim", on);
+      Array.prototype.forEach.call(svg.querySelectorAll("[data-k]"), function (e) {
+        var k = e.getAttribute("data-k"), hit = st.pt ? (e === st.pt) : (k === m);
+        e.classList.toggle("on", on && hit);
+      });
+      Array.prototype.forEach.call(legend.querySelectorAll("button"), function (bt) { var k = bt.getAttribute("data-m"); bt.classList.toggle("hot", k === st.lh || k === st.lock); bt.setAttribute("aria-pressed", k === st.lock ? "true" : "false"); });
+    }
+    function setPt(b) {
+      st.pt = b; apply();
+      var r = b.querySelector(".dot").getBoundingClientRect();
+      tipShow(root, tip, "<b>" + esc(b.getAttribute("data-s")) + "</b><br>" + b.getAttribute("data-v") + " mm", r.left + r.width / 2, r.top - 8);
+    }
+    function clr() { if (!st.pt) return; st.pt = null; tip.classList.remove("on"); apply(); }
+    var of = function (e) { var t = e.target; return t && t.closest ? t.closest(".b") : null; };
+    box.addEventListener("pointerover", function (e) { var b = of(e); if (b) setPt(b); });
+    box.addEventListener("pointerout", function (e) { if (e.pointerType === "touch") return; var b = of(e); if (b && !(e.relatedTarget && b.contains(e.relatedTarget))) clr(); });
+    box.addEventListener("click", function (e) { var b = of(e); if (b) setPt(b); else clr(); });
+    box.addEventListener("focusin", function (e) { var b = of(e); if (b) setPt(b); });
+    box.addEventListener("focusout", function (e) { if (of(e)) clr(); });
+    box.addEventListener("keydown", function (e) {
+      var b = of(e); if (!b) return; var k = e.key, d = (k === "ArrowRight" || k === "ArrowDown") ? 1 : (k === "ArrowLeft" || k === "ArrowUp") ? -1 : 0; if (!d) return;
+      var all = Array.prototype.slice.call(box.querySelectorAll(".b")), i = all.indexOf(b) + d; if (i < 0 || i >= all.length) return;
+      e.preventDefault(); b.setAttribute("tabindex", "-1"); all[i].setAttribute("tabindex", "0"); all[i].focus();
+    });
+    document.addEventListener("click", function (e) { if (!root.contains(e.target)) clr(); });
+    legend.addEventListener("pointerover", function (e) { var b = e.target.closest && e.target.closest("button"); if (b && e.pointerType !== "touch") { st.lh = b.getAttribute("data-m"); apply(); } });
+    legend.addEventListener("pointerout", function () { if (st.lh) { st.lh = null; apply(); } });
+    legend.addEventListener("focusin", function (e) { var b = e.target.closest && e.target.closest("button"); if (b) { st.lh = b.getAttribute("data-m"); apply(); } });
+    legend.addEventListener("focusout", function () { st.lh = null; apply(); });
+    legend.addEventListener("click", function (e) { var b = e.target.closest && e.target.closest("button"); if (!b) return; var m = b.getAttribute("data-m"); st.lock = (st.lock === m) ? null : m; apply(); });
+    render(); var rt = null; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(render, 120); });
+    reveal(box, st);
+  }
+
+  bars({ id: "rb-coast", views: ["All", "Sliding", "Articulated"], overview: true, ticks: [0, 10, 20, 30, 40], ymax: 46, ymaxS: 56, ylabel: "Median held-out error (mm)", pct: false, label: "Median held-out error in contact and while coasting" });
+  bars({ id: "rb-replay", views: ["All", "Hammer", "Tool case", "Box"], overview: false, ticks: [0, 10, 20, 30, 40], ymax: 46, ymaxS: 54, ucapS: 200, ylabel: "Median slide error (mm)", pct: false, ref: { value: 12, label: "Tracking error, about 12 mm" }, label: "Median slide error of the replayed strikes" });
+  scatter("rb-scatter");
+  dots("rb-sweeps");
 })();
 </script>
 </body>
