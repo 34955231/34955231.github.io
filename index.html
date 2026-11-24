@@ -126,6 +126,8 @@ td b { font-weight: 700; }
 @media (max-width: 720px) { .vb-seg button { padding: 8px 10px; } }
 @media (prefers-reduced-motion: reduce) { .vb-plot .bar, .vb-plot .vl { transition: none; } }
 
+.lg path { fill: #4d4d4d; }
+.vb-legend .lg { flex: none; }
 /* robot trials */
 h3.group { margin-top: var(--s3); }
 .rrow { display: grid; gap: var(--s2); margin: 0 0 var(--s2); }
@@ -180,7 +182,7 @@ h3.group { margin-top: var(--s3); }
 <div class="vb-tip" role="status"></div>
 <noscript><img src="media/fig/vlm_bars.png" alt="Bar charts of the held-out error of PokeBot, a simulator asset library and five VLM guesses" style="width:100%;height:auto"></noscript>
 </div>
-<script type="application/json" id="vb-data">{"order":["fit","lib","opus","fable","gem","gpt","ast"],"models":{"fit":{"n":"PokeBot","c":"#3D6FB6"},"lib":{"n":"MolmoSpaces","c":"#BDBDBD"},"opus":{"n":"Claude Opus 5.5","c":"#E08214"},"fable":{"n":"Claude Fable 5.2","c":"#FDB863"},"gem":{"n":"Gemini 4 Carbon","c":"#807DBA"},"gpt":{"n":"GPT 5.6 Sol","c":"#238B45"},"ast":{"n":"GPT 6 Astra","c":"#A1D99B"}},"groups":["Sliding","Articulated","All"],"panels":[{"id":"a","title":"(a) Simulator asset library","short":"asset library","models":["fit","lib"]},{"id":"b","title":"(b) VLM guess from one photo","short":"one photo","models":["fit","opus","fable","gem","gpt","ast"]},{"id":"c","title":"(c) VLM guess from poke video","short":"poke video","models":["fit","opus","fable","gem","gpt","ast"]}],"v":{"a":{"Sliding":{"fit":25.7,"lib":50.2},"Articulated":{"fit":11.1,"lib":102.5},"All":{"fit":20.3,"lib":63.0}},"b":{"Sliding":{"fit":25.0,"opus":39.4,"fable":56.7,"gem":40.3,"gpt":36.2,"ast":45.5},"Articulated":{"fit":12.3,"opus":58.2,"fable":54.2,"gem":54.7,"gpt":89.4,"ast":78.0},"All":{"fit":20.4,"opus":56.1,"fable":56.7,"gem":51.9,"gpt":56.1,"ast":61.6}},"c":{"Sliding":{"fit":24.7,"opus":47.6,"fable":46.3,"gem":57.0,"gpt":45.5,"ast":64.8},"Articulated":{"fit":8.6,"opus":77.1,"fable":44.2,"gem":54.6,"gpt":84.9,"ast":77.1},"All":{"fit":19.5,"opus":57.0,"fable":46.3,"gem":54.6,"gpt":62.3,"ast":70.2}}}}</script>
+<script type="application/json" id="vb-data">{"order":["fit","lib","opus","fable","gem","gpt","ast"],"models":{"fit":{"n":"PokeBot","c":"#3D6FB6"},"lib":{"n":"MolmoSpaces","c":"#BDBDBD"},"opus":{"n":"Claude Opus 5.5","c":"#E08214","logo":"anthropic"},"fable":{"n":"Claude Fable 5.2","c":"#FDB863","logo":"anthropic"},"gem":{"n":"Gemini 4 Carbon","c":"#807DBA","logo":"googlegemini"},"gpt":{"n":"GPT 5.6 Sol","c":"#238B45","logo":"openai"},"ast":{"n":"GPT 6 Astra","c":"#A1D99B","logo":"openai"}},"groups":["Sliding","Articulated","All"],"panels":[{"id":"a","title":"(a) Simulator asset library","short":"asset library","models":["fit","lib"]},{"id":"b","title":"(b) VLM guess from one photo","short":"one photo","models":["fit","opus","fable","gem","gpt","ast"]},{"id":"c","title":"(c) VLM guess from poke video","short":"poke video","models":["fit","opus","fable","gem","gpt","ast"]}],"v":{"a":{"Sliding":{"fit":25.7,"lib":50.2},"Articulated":{"fit":11.1,"lib":102.5},"All":{"fit":20.3,"lib":63.0}},"b":{"Sliding":{"fit":25.0,"opus":39.4,"fable":56.7,"gem":40.3,"gpt":36.2,"ast":45.5},"Articulated":{"fit":12.3,"opus":58.2,"fable":54.2,"gem":54.7,"gpt":89.4,"ast":78.0},"All":{"fit":20.4,"opus":56.1,"fable":56.7,"gem":51.9,"gpt":56.1,"ast":61.6}},"c":{"Sliding":{"fit":24.7,"opus":47.6,"fable":46.3,"gem":57.0,"gpt":45.5,"ast":64.8},"Articulated":{"fit":8.6,"opus":77.1,"fable":44.2,"gem":54.6,"gpt":84.9,"ast":77.1},"All":{"fit":19.5,"opus":57.0,"fable":46.3,"gem":54.6,"gpt":62.3,"ast":70.2}}},"logos":{"anthropic":"M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z","googlegemini":"M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81","openai":"M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"}}</script>
 <figcaption>Held-out error of <span class="pb">PokeBot</span> against a simulator asset library (MolmoSpaces <span class="cite">[<a href="#ref-8">8</a>]</span>) and five VLM guesses (Claude Fable 5.2 <span class="cite">[<a href="#ref-9">9</a>]</span> among them).</figcaption>
 </figure>
 <p style="margin-top: var(--s2)">Across 404 held-out pokes on 35 objects and articulated parts, the fitted twins cut the unseen interaction motion error by at least 58% compared with assets whose physics come from VLM guesses. <span class="pb">PokeBot</span> predicts held-out pokes with a median error of 20.4 mm, against 51.9 mm to 61.6 mm for the five VLMs.</p>
@@ -354,8 +356,12 @@ h3.group { margin-top: var(--s3); }
   var st = { group: null, lock: null, lh: null, bar: null, revealed: reduce || !("IntersectionObserver" in window) };
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
 
+  function logoSvg(m, size, x, y) {
+    var n = D.models[m].logo; if (!n) return "";
+    return '<svg class="lg" x="' + x + '" y="' + y + '" width="' + size + '" height="' + size + '" viewBox="0 0 24 24"><path d="' + D.logos[n] + '"/></svg>';
+  }
   seg.innerHTML = ["Overview", "All", "Sliding", "Articulated"].map(function (g) { return '<button type="button" aria-pressed="' + (g === "Overview" ? "true" : "false") + '" data-g="' + g + '">' + g + "</button>"; }).join("");
-  legend.innerHTML = D.order.map(function (m) { return '<button type="button" aria-pressed="false" data-m="' + m + '"><i style="background:' + D.models[m].c + '"></i>' + esc(D.models[m].n) + "</button>"; }).join("");
+  legend.innerHTML = D.order.map(function (m) { return '<button type="button" aria-pressed="false" data-m="' + m + '"><i style="background:' + D.models[m].c + '"></i>' + logoSvg(m, 14, 0, 0) + esc(D.models[m].n) + "</button>"; }).join("");
 
   function render() {
     var W = Math.max(300, Math.floor(box.clientWidth));
@@ -379,6 +385,8 @@ h3.group { margin-top: var(--s3); }
     }
     var out = [], x = 0, y = 0, ys = PH / YMAX;
     var pitch = u * (1 + BG);
+    var LGS = Math.min(single ? 20 : 16, Math.floor(u - 2)), showLg = LGS >= 10; if (!showLg) LGS = 0;
+    var LGH = showLg ? LGS + 6 : 0; BOT += LGH; st.logos = showLg;
     var fsV = Math.max(9, Math.min(14, Math.floor((single ? pitch - 3 : u * (1 + 2 * Math.min(PB, GG)) - 4) / 2.3)));
     var fsP = Math.max(9, Math.min(14, Math.floor((pitch - 3) / 3.3)));
     P.forEach(function (p, pi) {
@@ -403,13 +411,14 @@ h3.group { margin-top: var(--s3); }
           } else if (m === "fit") {
             lbl += '<text class="vl" style="font-size:' + fsV + 'px" x="' + c + '" y="' + (by - 9) + '" text-anchor="middle">' + v.toFixed(1) + "</text>";
           }
+          var lg = showLg ? logoSvg(m, LGS, c - LGS / 2, base + 5) : "";
           out.push('<g class="b" tabindex="-1" role="img" aria-label="' + esc(D.models[m].n + ", " + g + ", " + p.short + ", " + v.toFixed(1) + " mm") + '" data-m="' + m + '" data-p="' + p.id + '" data-g="' + g + '" data-v="' + v.toFixed(1) + '">' +
-            '<rect class="hit" x="' + bx + '" y="' + (y + TOP) + '" width="' + u + '" height="' + PH + '"/>' +
-            '<rect class="bar" x="' + bx + '" y="' + by + '" width="' + u + '" height="' + h + '" fill="' + D.models[m].c + '"/>' + lbl + "</g>");
+            '<rect class="hit" x="' + bx + '" y="' + (y + TOP) + '" width="' + u + '" height="' + (PH + LGH) + '"/>' +
+            '<rect class="bar" x="' + bx + '" y="' + by + '" width="' + u + '" height="' + h + '" fill="' + D.models[m].c + '"/>' + lbl + lg + "</g>");
           lastR = bx + u;
         });
         if (!single) out.push('<line class="dash" x1="' + (sx + pad + u) + '" x2="' + lastR + '" y1="' + fitTop + '" y2="' + fitTop + '"/>');
-        out.push('<text class="gl" x="' + (sx + slot / 2) + '" y="' + (base + 20) + '" text-anchor="middle">' + g + "</text>");
+        out.push('<text class="gl" x="' + (sx + slot / 2) + '" y="' + (base + LGH + 20) + '" text-anchor="middle">' + g + "</text>");
       });
       if (stacked) y += TOP + PH + BOT + 16; else x += ml + pw + 14;
     });
