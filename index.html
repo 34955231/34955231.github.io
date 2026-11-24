@@ -26,23 +26,19 @@ a { color: var(--accent-text); }
 .pb { color: var(--accent-text); font-weight: 700; letter-spacing: .01em; }
 main { max-width: 1152px; margin: 0 auto; padding: 0 var(--s3) var(--s4); }
 main > * { min-width: 0; }
-/* first screen */
 .teaser { max-width: 1152px; margin: 0 auto; padding: var(--s3) var(--s3) 0; text-align: center; }
 .teaser .plate { background: #ffffff; border-radius: var(--radius); overflow: hidden; line-height: 0; }
 .teaser .plate video { width: 100%; height: auto; display: block; background: #ffffff; aspect-ratio: 1920 / 1010; }
 .teaser h1 { font: 700 var(--t4)/1.15 var(--f); letter-spacing: -0.01em; margin: var(--s3) auto var(--s1); max-width: 20em; }
 .teaser .venue { margin: 0 auto var(--s2); color: var(--mut); font-size: var(--t2); }
-/* navigation */
 nav.top { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s1) var(--s3); padding: 12px var(--s3); margin: 0 0 var(--s4); background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); font-size: var(--t1); }
 nav.top a { color: var(--fg); text-decoration: none; font-weight: 600; }
 nav.top a:hover { color: var(--accent-text); text-decoration: underline; }
-/* references */
 .cite { font-size: var(--t1); white-space: nowrap; }
 .cite a { text-decoration: none; }
 ol.refs { margin: 0; padding-left: var(--s4); font-size: var(--t1); color: var(--mut); line-height: 1.5; }
 ol.refs li { margin: 0 0 var(--s1); padding-left: var(--s1); }
 ol.refs li:target { color: var(--fg); }
-/* sections */
 section { margin: 0 0 var(--s4); }
 h2 { font: 700 var(--t3)/1.25 var(--f); margin: 0 0 var(--s3); padding-bottom: var(--s1); border-bottom: 1px solid var(--accent); }
 h3 { font: 700 var(--t2)/1.3 var(--f); margin: 0 0 var(--s1); }
@@ -52,7 +48,6 @@ video { width: 100%; height: auto; display: block; border-radius: var(--radius);
 figure { margin: 0; min-width: 0; }
 figcaption { font-size: var(--t1); color: var(--mut); margin-top: var(--s1); line-height: 1.4; }
 .hero video { aspect-ratio: 16 / 9; }
-/* one card style for every grid */
 .card, a.tile { display: block; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 6px; min-width: 0; color: var(--fg); text-decoration: none; }
 a.tile:hover, a.tile:focus-visible { border-color: var(--accent); }
 .card video { border-radius: calc(var(--radius) - 4px); object-fit: contain; background: var(--media); }
@@ -63,10 +58,8 @@ figure:not(.card) > figcaption { font-style: italic; font-size: 0.85rem; padding
 a.tile img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: calc(var(--radius) - 4px); background: var(--media); }
 a.tile b { display: block; font-size: var(--t1); font-weight: 600; line-height: 1.3; margin: var(--s1) 4px 2px; }
 .rooms { margin: var(--s2) 0 0; font-size: var(--t1); color: var(--mut); }
-/* paper figures */
 .pfig img { display: block; width: 100%; height: auto; background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius); }
 .pfig { padding: 0; }
-/* method steps */
 .step { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s3); align-items: center; margin: 0 0 var(--s4); }
 .step.wide { grid-template-columns: minmax(0, 1fr); }
 .step h3 { display: flex; align-items: center; gap: var(--s1); font-size: 20px; }
@@ -75,7 +68,6 @@ a.tile b { display: block; font-size: var(--t1); font-weight: 600; line-height: 
 .eq { font: 20px/1.9 var(--f-math); padding: var(--s2) var(--s3); margin: 0 0 var(--s2); border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); overflow-x: auto; white-space: nowrap; }
 .eq small { display: block; font: 600 var(--t1)/1.4 var(--f); color: var(--mut); }
 .eq i { font-style: italic; }
-/* tables */
 .tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s1) var(--s2) var(--s2); margin: 0 0 var(--s2); }
 table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: var(--t1); font-variant-numeric: tabular-nums; }
 caption { caption-side: top; text-align: left; color: var(--mut); padding: var(--s1) 0 var(--s2); line-height: 1.4; }
@@ -87,7 +79,6 @@ thead th.grp { text-align: center; border-bottom: 1px solid var(--line); }
 tbody tr:last-child td { border-bottom: 1px solid var(--fg); }
 tr.pbrow td { background: color-mix(in srgb, var(--accent) 16%, transparent); }
 td b { font-weight: 700; }
-/* held-out error chart */
 .vbox { position: relative; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s2); background: var(--bg); }
 .vb-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s1) var(--s2); margin: 0 0 var(--s2); }
 .vb-seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
@@ -129,7 +120,6 @@ td b { font-weight: 700; }
 
 .lg path { fill: #4d4d4d; }
 .vb-legend .lg { flex: none; }
-/* robot trials charts and tiles */
 .vb-ref { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t1); color: var(--mut); padding: 4px 8px; }
 .vb-ref i { width: 22px; border-top: 2px dashed #9a9a9a; display: inline-block; }
 .vb-legend .sw, .vb-legend svg.sw { flex: none; }
@@ -150,7 +140,6 @@ td b { font-weight: 700; }
 .vb-plot .b:focus-visible .dot, .vb-plot .b:focus-visible .pt3 { stroke: var(--accent-text); stroke-width: 2.5; }
 #robot .chartfig { margin: 0 0 var(--s2); }
 
-/* robot trials */
 h3.group { margin-top: 56px; margin-bottom: 14px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 22px; letter-spacing: -0.01em; }
 h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em; margin-right: 10px; border-radius: 2px; background: #FF8F78; vertical-align: -0.08em; }
 .rrow { display: grid; gap: var(--s2); margin: 0 0 var(--s2); }
@@ -211,8 +200,8 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 <div>
 <h3><b>2</b>Track</h3>
 <p>Off-the-shelf vision models reconstruct and track every object and articulated part.</p>
-<p>SAM 3 <span class="cite">[<a href="#ref-10">10</a>]</span> segments each object. SAM 3D <span class="cite">[<a href="#ref-1">1</a>]</span> builds the mesh from one RGB photo and the LiDAR point map. FoundationPose++ <span class="cite">[<a href="#ref-3">3</a>]</span> tracks it through the video.</p>
-<p>AprilTags <span class="cite">[<a href="#ref-11">11</a>, <a href="#ref-12">12</a>]</span> on the probe give its pose. MoSE3 <span class="cite">[<a href="#ref-13">13</a>]</span> tracks each articulated part.</p>
+<p>SAM 3 <span class="cite">[<a href="#ref-8">8</a>]</span> segments each object. SAM 3D <span class="cite">[<a href="#ref-1">1</a>]</span> builds the mesh from one RGB photo and the LiDAR point map. FoundationPose++ <span class="cite">[<a href="#ref-3">3</a>]</span> tracks it through the video.</p>
+<p>AprilTags <span class="cite">[<a href="#ref-9">9</a>, <a href="#ref-10">10</a>]</span> on the probe give its pose. MoSE3 <span class="cite">[<a href="#ref-11">11</a>]</span> tracks each articulated part.</p>
 </div>
 <figure class="pfig"><img src="media/fig/tracking.png" alt="The tracking pipeline" loading="lazy"><figcaption>We use RGB + LiDAR for tracking objects and the probe, then CEM for fitting <i>&theta;</i>.</figcaption></figure>
 </div>
@@ -220,8 +209,8 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 <div class="step">
 <div>
 <h3><b>3</b>Identify</h3>
-<p>The recorded forces are replayed at the measured contact points in a JAX <span class="cite">[<a href="#ref-14">14</a>]</span> rigid-body simulator.</p>
-<p>A CEM <span class="cite">[<a href="#ref-15">15</a>]</span> search fits each object&#x27;s mass distribution and friction map, or each joint&#x27;s friction and damping, until the simulated motion matches the tracked motion.</p>
+<p>The recorded forces are replayed at the measured contact points in a JAX <span class="cite">[<a href="#ref-12">12</a>]</span> rigid-body simulator.</p>
+<p>A CEM <span class="cite">[<a href="#ref-13">13</a>]</span> search fits each object&#x27;s mass distribution and friction map, or each joint&#x27;s friction and damping, until the simulated motion matches the tracked motion.</p>
 <div class="eq"><small>Sliding object</small><i>M</i>(<i>&rho;</i>) <i>q&#776;</i> = <i>J</i>(<i>q</i>, <i>p</i>)<sup>&#8868;</sup> <i>f</i> <i>a</i> &minus; <i>h</i>(<i>q</i>, <i>q&#775;</i>; <i>&mu;</i>, <i>b</i>)</div>
 <div class="eq"><small>Articulated part</small><i>I</i> <i>q&#776;</i> = <i>&tau;</i><sub>probe</sub> + <i>&tau;</i><sub>g</sub>(<i>q</i>) &minus; <i>c</i> <i>q&#775;</i> &minus; <i>&tau;</i><sub>f</sub></div>
 </div>
@@ -231,7 +220,7 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 <div class="step">
 <div>
 <h3><b>4</b>Use</h3>
-<p>Robots plan on the resulting assets in the MuJoCo <span class="cite">[<a href="#ref-16">16</a>]</span> simulator and execute on the real objects.</p>
+<p>Robots plan on the resulting assets in the MuJoCo <span class="cite">[<a href="#ref-14">14</a>]</span> simulator and execute on the real objects.</p>
 <p>For multi-object scenes, we also rebuild the whole scene in simulation from one RGB + LiDAR capture, with an extension of REST3D <span class="cite">[<a href="#ref-7">7</a>]</span>.</p>
 </div>
 <figure class="pfig"><img src="media/fig/scenes.png" alt="The scene reconstruction steps" loading="lazy"><figcaption>From one RGB + LiDAR capture, a VLM agent segments the objects, places our <span class="pb">PokeBot</span> assets in the scene, and rebuilds a clean model in Blender.</figcaption></figure>
@@ -250,7 +239,7 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 <noscript><img src="media/fig/vlm_bars.png" alt="Bar charts of the held-out error of PokeBot, a simulator asset library and five VLM guesses" style="width:100%;height:auto"></noscript>
 </div>
 <script type="application/json" id="vb-data">{"order":["fit","lib","opus","fable","gem","gpt","ast"],"models":{"fit":{"n":"PokeBot","c":"#3D6FB6"},"lib":{"n":"MolmoSpaces","c":"#BDBDBD"},"opus":{"n":"Claude Opus 5.5","c":"#E08214","logo":"anthropic"},"fable":{"n":"Claude Fable 5.2","c":"#FDB863","logo":"anthropic"},"gem":{"n":"Gemini 4 Carbon","c":"#807DBA","logo":"googlegemini"},"gpt":{"n":"GPT 5.6 Sol","c":"#238B45","logo":"openai"},"ast":{"n":"GPT 6 Astra","c":"#A1D99B","logo":"openai"}},"groups":["Sliding","Articulated","All"],"panels":[{"id":"a","title":"(a) Simulator asset library","short":"asset library","models":["fit","lib"]},{"id":"b","title":"(b) VLM guess from one photo","short":"one photo","models":["fit","opus","fable","gem","gpt","ast"]},{"id":"c","title":"(c) VLM guess from poke video","short":"poke video","models":["fit","opus","fable","gem","gpt","ast"]}],"v":{"a":{"Sliding":{"fit":25.7,"lib":50.2},"Articulated":{"fit":11.1,"lib":102.5},"All":{"fit":20.3,"lib":63.0}},"b":{"Sliding":{"fit":25.0,"opus":39.4,"fable":56.7,"gem":40.3,"gpt":36.2,"ast":45.5},"Articulated":{"fit":12.3,"opus":58.2,"fable":54.2,"gem":54.7,"gpt":89.4,"ast":78.0},"All":{"fit":20.4,"opus":56.1,"fable":56.7,"gem":51.9,"gpt":56.1,"ast":61.6}},"c":{"Sliding":{"fit":24.7,"opus":47.6,"fable":46.3,"gem":57.0,"gpt":45.5,"ast":64.8},"Articulated":{"fit":8.6,"opus":77.1,"fable":44.2,"gem":54.6,"gpt":84.9,"ast":77.1},"All":{"fit":19.5,"opus":57.0,"fable":46.3,"gem":54.6,"gpt":62.3,"ast":70.2}}},"logos":{"anthropic":"M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z","googlegemini":"M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81","openai":"M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"}}</script>
-<figcaption>Held-out error of <span class="pb">PokeBot</span> against a simulator asset library (MolmoSpaces <span class="cite">[<a href="#ref-8">8</a>]</span>) and five VLM guesses (Claude Fable 5.2 <span class="cite">[<a href="#ref-9">9</a>]</span> among them).</figcaption>
+<figcaption>Held-out error of <span class="pb">PokeBot</span> against a simulator asset library (MolmoSpaces <span class="cite">[<a href="#ref-15">15</a>]</span>) and five VLM guesses (Claude Fable 5.2 <span class="cite">[<a href="#ref-16">16</a>]</span> among them).</figcaption>
 </figure>
 <p style="margin-top: var(--s2)">Across 404 held-out pokes on 35 objects and articulated parts, the fitted twins cut the unseen interaction motion error by at least 58% compared with assets whose physics come from VLM guesses. <span class="pb">PokeBot</span> predicts held-out pokes with a median error of 20.4 mm, against 51.9 mm to 61.6 mm for the five VLMs.</p>
 </section>
@@ -310,7 +299,7 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 <div class="rrow" style="grid-template-columns: 1fr"><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_strikes.jpg" src="media/robot/wall_strikes.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>All 28 strikes. Each label gives the object and the target slide in body lengths.</figcaption></figure></div>
 
 <h3 class="group">YAM pushes with a learned policy</h3>
-<p>Two YAM arms run a learned policy. We plan the push force that the policy needs in simulation on the <span class="pb">PokeBot</span> asset.</p>
+<p>Two YAM arms run MolmoAct2 <span class="cite">[<a href="#ref-17">17</a>]</span>, a learned policy. We plan the push force that the policy needs in simulation on the <span class="pb">PokeBot</span> asset.</p>
 <div class="rrow" style="grid-template-columns: 1fr"><figure class="card"><video controls muted playsinline preload="none" poster="media/robot/contact_story.jpg" src="media/robot/contact_story.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>The box task and the monitor task</figcaption></figure></div>
 <div class="rrow" style="grid-template-columns: repeat(2, minmax(0, 1fr))"><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_box.jpg" src="media/robot/wall_box.mp4" style="aspect-ratio: 1280 / 764"></video><figcaption>All 30 box pushes. Each column is one added push force.</figcaption></figure><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_monitor.jpg" src="media/robot/wall_monitor.mp4" style="aspect-ratio: 1280 / 764"></video><figcaption>All 30 monitor pushes. Each column is one added downward force.</figcaption></figure></div>
 
@@ -331,15 +320,15 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 <li id="ref-5">Kuan-Ting Yu, Maria Bauza, Nima Fazeli, Alberto Rodriguez. More than a Million Ways to Be Pushed: A High-Fidelity Experimental Dataset of Planar Pushing. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2016.</li>
 <li id="ref-6">Nicholas Pfaff et al. Scalable Real2Sim: Physics-Aware Asset Generation Via Robotic Pick-and-Place Setups. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2025.</li>
 <li id="ref-7">Xiaoxuan Ma et al. REST3D: Reconstructing Physically Stable 3D Scenes from a Single Image. SIGGRAPH Asia 2026 Conference Papers, 2026.</li>
-<li id="ref-8">Yejin Kim et al. MolmoSpaces: A Large-Scale Open Ecosystem for Robot Navigation and Manipulation. Preprint, 2026.</li>
-<li id="ref-9">Anthropic. Claude Fable 5.2 and Claude Mythos 5.2. 2026.</li>
-<li id="ref-10">Nicolas Carion et al. SAM 3: Segment Anything with Concepts. International Conference on Learning Representations (ICLR), 2026.</li>
-<li id="ref-11">Edwin Olson. AprilTag: A Robust and Flexible Visual Fiducial System. IEEE International Conference on Robotics and Automation (ICRA), 2011.</li>
-<li id="ref-12">John Wang, Edwin Olson. AprilTag 2: Efficient and Robust Fiducial Detection. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2016.</li>
-<li id="ref-13">Jiahuan Cheng et al. MoSE3: Learning World-Space SE(3) at Every Pixel. Advances in Neural Information Processing Systems (NeurIPS), 2026.</li>
-<li id="ref-14">James Bradbury et al. JAX: Composable Transformations of Python+NumPy Programs. 2018.</li>
-<li id="ref-15">Reuven Y. Rubinstein, Dirk P. Kroese. The Cross-Entropy Method: A Unified Approach to Combinatorial Optimization, Monte-Carlo Simulation, and Machine Learning. Springer, 2004.</li>
-<li id="ref-16">Emanuel Todorov, Tom Erez, Yuval Tassa. MuJoCo: A Physics Engine for Model-Based Control. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2012.</li>
+<li id="ref-8">Nicolas Carion et al. SAM 3: Segment Anything with Concepts. International Conference on Learning Representations (ICLR), 2026.</li>
+<li id="ref-9">Edwin Olson. AprilTag: A Robust and Flexible Visual Fiducial System. IEEE International Conference on Robotics and Automation (ICRA), 2011.</li>
+<li id="ref-10">John Wang, Edwin Olson. AprilTag 2: Efficient and Robust Fiducial Detection. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2016.</li>
+<li id="ref-11">Jiahuan Cheng et al. MoSE3: Learning World-Space SE(3) at Every Pixel. Advances in Neural Information Processing Systems (NeurIPS), 2026.</li>
+<li id="ref-12">James Bradbury et al. JAX: Composable Transformations of Python+NumPy Programs. 2018.</li>
+<li id="ref-13">Reuven Y. Rubinstein, Dirk P. Kroese. The Cross-Entropy Method: A Unified Approach to Combinatorial Optimization, Monte-Carlo Simulation, and Machine Learning. Springer, 2004.</li>
+<li id="ref-14">Emanuel Todorov, Tom Erez, Yuval Tassa. MuJoCo: A Physics Engine for Model-Based Control. IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2012.</li>
+<li id="ref-15">Yejin Kim et al. MolmoSpaces: A Large-Scale Open Ecosystem for Robot Navigation and Manipulation. Preprint, 2026.</li>
+<li id="ref-16">Anthropic. Claude Fable 5.2 and Claude Mythos 5.2. 2026.</li>
 <li id="ref-17">Haoquan Fang et al. MolmoAct2: Action Reasoning Models for Real-world Deployment. Preprint, 2026.</li>
 </ol>
 </section>
@@ -347,7 +336,6 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 </main>
 <script>
 (function () {
-  // Play a clip while it is on screen. Without this script the clips play on demand.
   var vids = document.querySelectorAll("video[data-auto]");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (es) {
@@ -362,7 +350,6 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 </script>
 <script>
 (function () {
-  // Held-out error chart. The numbers are in the JSON block above. No outside request.
   var root = document.getElementById("vb");
   if (!root) return;
   var D = JSON.parse(document.getElementById("vb-data").textContent);
@@ -524,7 +511,6 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 </script>
 <script>
 (function () {
-  // Robot trials charts. All numbers are in the JSON blocks of the page. No outside request.
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var DEFAULT_DATA = null;
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;"); }
@@ -552,7 +538,6 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
     io.observe(box);
   }
 
-  // ---------- grouped bars (the same code style as the results chart) ----------
   function bars(cfg) {
     var root = document.getElementById(cfg.id); if (!root) return;
     var D = json(cfg.id + "-data"), L = json("vb-data").logos;
@@ -679,7 +664,6 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
     reveal(box, st);
   }
 
-  // ---------- scatter: real slide against target slide ----------
   function scatter(id) {
     var root = document.getElementById(id); if (!root) return;
     var D = json(id + "-data");
@@ -741,7 +725,6 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
     render(); var rt = null; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(render, 120); });
   }
 
-  // ---------- dots: travel against the added push force ----------
   function dots(id) {
     var root = document.getElementById(id); if (!root) return;
     var D = json(id + "-data");
