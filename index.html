@@ -300,21 +300,24 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 <section id="robot">
 <h2>Robot trials</h2>
 <p>We validate <span class="pb">PokeBot</span> assets by using them to plan real-world robot tasks in simulation, then deploying the plans on real robots.</p>
-<div class="rrow" style="grid-template-columns: repeat(3, minmax(0, 1fr))"><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_strikes.jpg" src="media/robot/wall_strikes.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>28 UR5 strikes</figcaption></figure><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_box.jpg" src="media/robot/wall_box.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>30 YAM box pushes</figcaption></figure><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_monitor.jpg" src="media/robot/wall_monitor.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>30 YAM monitor pushes</figcaption></figure></div>
 
 <h3 class="group">UR5 strikes</h3>
-<div class="rrow" style="grid-template-columns: 3.6641fr 3.2121fr">
-<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r1.jpg" src="media/robot/r1.mp4" style="aspect-ratio: 3.6641"></video><figcaption>UR5 strike replayed in simulation. Left: real video. Middle: twin with an AI guess. Right: PokeBot twin.</figcaption></figure>
-<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r2.jpg" src="media/robot/r2.mp4" style="aspect-ratio: 3.2121"></video><figcaption>UR5 closes a microwave door with a strike, 4 of 4. Left: PokeBot twin. Right: real robot.</figcaption></figure>
+<p>A UR5 strikes an object so that it slides to a target. We plan the strike speed in simulation on the <span class="pb">PokeBot</span> asset.</p>
+<div class="rrow" style="grid-template-columns: 2.4427fr 3.2121fr">
+<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r1.jpg" src="media/robot/r1.mp4" style="aspect-ratio: 2.4427"></video><figcaption>One strike. Left: real robot. Right: the same strike in the PokeBot simulation.</figcaption></figure>
+<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r2.jpg" src="media/robot/r2.mp4" style="aspect-ratio: 3.2121"></video><figcaption>A strike closes a microwave door, 4 of 4. Left: PokeBot simulation. Right: real robot.</figcaption></figure>
 </div>
-
+<div class="rrow" style="grid-template-columns: 1fr"><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_strikes.jpg" src="media/robot/wall_strikes.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>All 28 strikes. Each label gives the object and the target slide in body lengths.</figcaption></figure></div>
 
 <h3 class="group">YAM pushes with a learned policy</h3>
-<div class="rrow" style="grid-template-columns: 1fr"><figure class="card"><video controls muted playsinline preload="none" poster="media/robot/contact_story.jpg" src="media/robot/contact_story.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>The box and monitor tasks, with all 60 runs of the two force sweeps</figcaption></figure></div>
+<p>Two YAM arms run a learned policy. We plan the push force that the policy needs in simulation on the <span class="pb">PokeBot</span> asset.</p>
+<div class="rrow" style="grid-template-columns: 1fr"><figure class="card"><video controls muted playsinline preload="none" poster="media/robot/contact_story.jpg" src="media/robot/contact_story.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>The box task and the monitor task</figcaption></figure></div>
+<div class="rrow" style="grid-template-columns: repeat(2, minmax(0, 1fr))"><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_box.jpg" src="media/robot/wall_box.mp4" style="aspect-ratio: 1280 / 764"></video><figcaption>All 30 box pushes. Each column is one added push force.</figcaption></figure><figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/wall_monitor.jpg" src="media/robot/wall_monitor.mp4" style="aspect-ratio: 1280 / 764"></video><figcaption>All 30 monitor pushes. Each column is one added downward force.</figcaption></figure></div>
 
 <h3 class="group">YAM retargeting</h3>
+<p>Two YAM arms copy a human demonstration. We plan all pushes in simulation on the <span class="pb">PokeBot</span> asset.</p>
 <div class="rrow" style="grid-template-columns: 3.4122fr">
-<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r7.jpg" src="media/robot/r7.mp4" style="aspect-ratio: 3.4122"></video><figcaption>Two YAM arms copy a human demonstration, 16 pushes</figcaption></figure>
+<figure class="card"><video data-auto muted loop playsinline preload="none" poster="media/robot/r7.jpg" src="media/robot/r7.mp4" style="aspect-ratio: 3.4122"></video><figcaption>Left: human demonstration. Right: two YAM arms copy it with 16 pushes planned in simulation.</figcaption></figure>
 </div>
 </section>
 
