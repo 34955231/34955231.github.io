@@ -57,6 +57,7 @@ figcaption { font-size: var(--t1); color: var(--mut); margin-top: var(--s1); lin
 a.tile:hover, a.tile:focus-visible { border-color: var(--accent); }
 .card video { border-radius: calc(var(--radius) - 4px); object-fit: contain; background: var(--media); }
 .card figcaption { margin: var(--s1) 4px 2px; }
+figure:not(.card) > figcaption { font-style: italic; font-size: 0.85rem; padding-left: 10px; border-left: 2px solid #FF8F78; margin-top: 10px; }
 .grid { display: grid; gap: var(--s2); }
 .tiles { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
 a.tile img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: calc(var(--radius) - 4px); background: var(--media); }
@@ -150,7 +151,8 @@ td b { font-weight: 700; }
 #robot .chartfig { margin: 0 0 var(--s2); }
 
 /* robot trials */
-h3.group { margin-top: var(--s3); }
+h3.group { margin-top: 56px; margin-bottom: 14px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 22px; letter-spacing: -0.01em; }
+h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em; margin-right: 10px; border-radius: 2px; background: #FF8F78; vertical-align: -0.08em; }
 .rrow { display: grid; gap: var(--s2); margin: 0 0 var(--s2); }
 .rplots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s3); margin: 0 0 var(--s3); align-items: start; }
 .rplots p { margin: var(--s1) 0 0; font-size: var(--t1); }
