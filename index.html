@@ -199,7 +199,6 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 <div class="step wide">
 <div>
 <h3><b>2</b>Track</h3>
-<p>Off-the-shelf vision models reconstruct and track every object and articulated part.</p>
 <p>SAM 3 <span class="cite">[<a href="#ref-8">8</a>]</span> segments each object. SAM 3D <span class="cite">[<a href="#ref-1">1</a>]</span> builds the mesh from one RGB photo and the LiDAR point map. FoundationPose++ <span class="cite">[<a href="#ref-3">3</a>]</span> tracks it through the video.</p>
 <p>AprilTags <span class="cite">[<a href="#ref-9">9</a>, <a href="#ref-10">10</a>]</span> on the probe give its pose. MoSE3 <span class="cite">[<a href="#ref-11">11</a>]</span> tracks each articulated part.</p>
 </div>
@@ -296,10 +295,10 @@ h3.group::before { content: ""; display: inline-block; width: 6px; height: 0.9em
 <figure class="card"><video data-auto muted loop playsinline preload="none" poster="files/media/robot/r1.jpg" src="files/media/robot/r1.mp4" style="aspect-ratio: 2.4427"></video><figcaption>One strike. Left: real robot. Right: the same strike in the PokeBot simulation.</figcaption></figure>
 <figure class="card"><video data-auto muted loop playsinline preload="none" poster="files/media/robot/r2.jpg" src="files/media/robot/r2.mp4" style="aspect-ratio: 3.1068"></video><figcaption>A strike closes a microwave door. Left: PokeBot simulation. Right: all 4 real strikes.</figcaption></figure>
 </div>
-<div class="rrow" style="grid-template-columns: 1fr"><figure class="card"><video data-auto muted loop playsinline preload="none" poster="files/media/robot/wall_strikes.jpg" src="files/media/robot/wall_strikes.mp4" style="aspect-ratio: 1280 / 476"></video><figcaption>All 28 strikes. Each label gives the object and the target slide in body lengths.</figcaption></figure></div>
+<div class="rrow" style="grid-template-columns: 1fr"><figure class="card"><video data-auto muted loop playsinline preload="none" poster="files/media/robot/wall_strikes.jpg" src="files/media/robot/wall_strikes.mp4" style="aspect-ratio: 1280 / 476"></video><figcaption>All 28 strikes. Object and target slide in body lengths displayed.</figcaption></figure></div>
 
 <h3 class="group">YAM pushes with a learned policy</h3>
-<p>Two YAM arms run MolmoAct2 <span class="cite">[<a href="#ref-21">21</a>]</span>, a learned policy. We plan the push force that the policy needs in simulation on the <span class="pb">PokeBot</span> asset.</p>
+<p>We run a vision-language-action (VLA) policy, MolmoAct2 <span class="cite">[<a href="#ref-21">21</a>]</span>, with feedforward force planned from the <span class="pb">PokeBot</span> assets in simulation.</p>
 <div class="rrow" style="grid-template-columns: 1fr"><figure class="card"><video controls muted playsinline preload="none" poster="files/media/robot/contact_story.jpg" src="files/media/robot/contact_story.mp4" style="aspect-ratio: 16 / 9"></video><figcaption>The box task and the monitor task</figcaption></figure></div>
 <div class="rrow" style="grid-template-columns: repeat(2, minmax(0, 1fr))"><figure class="card"><video data-auto muted loop playsinline preload="none" poster="files/media/robot/wall_box.jpg" src="files/media/robot/wall_box.mp4" style="aspect-ratio: 1280 / 764"></video><figcaption>All 30 box pushes. Each column is one added push force.</figcaption></figure><figure class="card"><video data-auto muted loop playsinline preload="none" poster="files/media/robot/wall_monitor.jpg" src="files/media/robot/wall_monitor.mp4" style="aspect-ratio: 1280 / 764"></video><figcaption>All 30 monitor pushes. Each column is one added downward force.</figcaption></figure></div>
 
